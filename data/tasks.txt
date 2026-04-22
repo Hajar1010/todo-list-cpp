@@ -1,0 +1,9 @@
+// This file stores saved tasks.
+//
+// It acts like a small database.
+//
+// When the user saves tasks,
+// they are written here.
+//
+// When the program starts,
+// we can read from this file to restore tasks.
