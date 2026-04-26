@@ -7,7 +7,6 @@
 // - HIGH
 //
 // This makes the code easier to read and safer.
-s
 #pragma once
 enum class Priority {
     LOW,
