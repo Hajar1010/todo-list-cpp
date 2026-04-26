@@ -6,3 +6,12 @@
 // - DONE (finished)
 //
 // This helps track progress of tasks.
+
+#pragma once
+
+enum class Status {
+    TODO,
+    IN_PROGRESS,
+    DONE
+};
+
