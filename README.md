@@ -2,8 +2,7 @@
 Une application console performante conçue en C++ pour gérer efficacement vos tâches quotidiennes. Ce projet met en œuvre les principes de la programmation orientée objet (POO) et assure la persistance des données via un système de fichiers.
 
 ## Fonctionnalités
-- Gestion complète des tâches : Ajouter, modifier ou supprimer des tâches en toute simplicité.hg
-
+- Gestion complète des tâches : Ajouter, modifier ou supprimer des tâches en toute simplicité.
 - Organisation avancée : Définition de priorités (Basse, Moyenne, Haute) et suivi du statut (À faire, En cours, Terminé).
 
 - Persistance des données : Sauvegarde automatique et chargement des tâches depuis un fichier local pour ne jamais perdre vos informations.
