@@ -8,7 +8,7 @@
 // even after it is closed.
 
 #pragma once
-#include <vector>k
+#include <vector>
 #include "Task.h"
 
 class FileManager {
