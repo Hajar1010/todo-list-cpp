@@ -7,3 +7,10 @@
 // - HIGH
 //
 // This makes the code easier to read and safer.
+
+#pragma once
+enum class Priority {
+    LOW,
+    MEDIUM,
+    HIGH
+};
