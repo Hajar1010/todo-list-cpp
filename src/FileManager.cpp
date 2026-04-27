@@ -7,4 +7,4 @@
 // they will be stored in "data/tasks.txt".
 //
 // Later, we can also add loading functionality.
-RFRFTH
+
