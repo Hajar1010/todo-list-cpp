@@ -1,9 +1,28 @@
-// This file implements the TaskManager class.
-//
-// It defines:
-// - how tasks are added to the list
-// - how tasks are displayed
-// - how tasks are deleted
-//
-// It works with pointers to Task objects.
-// This allows us to use polymorphism later.
+#include "TaskManager.h"
+#include <iostream>
+
+void TaskManager::addTask(Task* task) {
+    tasks.push_back(task);
+}
+
+void TaskManager::displayTasks() const {
+    if (tasks.empty()) {
+        std::cout << "No tasks found." << std::endl;
+        return;
+    }
+    for (int i = 0; i < (int)tasks.size(); i++) {
+        std::cout << "--- Task " << i + 1 << " ---" << std::endl;
+        tasks[i]->display();
+    }
+}
+
+void TaskManager::removeTask(int index) {
+    if (index >= 0 && index < (int)tasks.size()) {
+        delete tasks[index];
+        tasks.erase(tasks.begin() + index);
+    }
+}
+
+std::vector<Task*>& TaskManager::getTasks() {
+    return tasks;
+}
