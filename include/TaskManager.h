@@ -1,3 +1,4 @@
+
 #pragma once
 #include <vector>
 #include "Task.h"
@@ -12,4 +13,7 @@ public:
     void removeTask(int index);
 
     std::vector<Task*>& getTasks();
+
 };
+
+

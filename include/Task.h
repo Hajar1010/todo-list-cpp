@@ -1,3 +1,4 @@
+
 #pragma once
 #include <string>
 #include <iostream>
@@ -26,7 +27,6 @@ public:
 };
 
 
-
 class WorkTask : public Task {
 public:
     WorkTask(std::string t, std::string d, Priority p, Status s)
@@ -50,3 +50,4 @@ public:
         return 2;
     }
 };
+

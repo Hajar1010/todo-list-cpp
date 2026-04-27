@@ -1,3 +1,4 @@
+
 #pragma once
 
 enum class Status {
@@ -5,3 +6,4 @@ enum class Status {
     IN_PROGRESS,
     DONE
 };
+
