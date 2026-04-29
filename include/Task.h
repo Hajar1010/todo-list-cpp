@@ -4,6 +4,7 @@
 #include <iostream>
 #include "Priority.h"
 #include "Status.h"
+#include "Deadline.h"
 
 class Task {
 protected:
@@ -11,6 +12,7 @@ protected:
     std::string description;
     Priority priority;
     Status status;
+    Deadline* deadline;
 
 public:
     Task(std::string t, std::string d, Priority p, Status s);
@@ -20,6 +22,9 @@ public:
     std::string getTitle() const;
     Priority getPriority() const;
     Status getStatus() const;
+    void setDeadline(Deadline* d);
+    Deadline* getDeadline() const;
+    bool isOverdue() const;
 
     virtual ~Task() {}
 
