@@ -15,9 +15,15 @@ Une application console performante conçue en C++ pour gérer efficacement vos 
 
 
 ## Features
-- Add / delete / modify tasks
-- Priority and status management
-- File saving/loading
+-  Ajouter / supprimer / modifier des tâches  
+-  Priorités (Priority enum)
+-  Statuts (Status enum)
+-  Gestion des tâches (add, remove, display)
+-  Suvegarde dans fichier (FileManager::save)
+-  Dates limites (deadlines)
+-  Filtrage et tri
+-  Mode Aujourd’hui
+-  Statistiques
 
 
 ## Installation et Utilisation
@@ -48,7 +54,7 @@ Une fois la compilation terminée, lancez l'application :
 ## Structure du Projet
 ```src/ ```: Contient les fichiers sources (.cpp).
 
-```include/ ```: Contient les fichiers d'en-tête (.hpp ou .h).
+```include/ ```: Contient les fichiers d'en-tête (.h).
 
 ```CMakeLists.txt``` : Configuration du projet pour CMake.
 
