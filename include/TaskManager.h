@@ -6,6 +6,7 @@
 class TaskManager {
 private:
     std::vector<Task*> tasks;
+    std::vector<Task*> archivedTasks; 
 
 public:
     void addTask(Task* task);
@@ -13,6 +14,8 @@ public:
     void removeTask(int index);
 
     std::vector<Task*>& getTasks();
+
+    void archiveDoneTasks();
 
 };
 
