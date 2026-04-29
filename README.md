@@ -1,4 +1,4 @@
-# Todo List Manager (C++)
+# Gestionnaire de Tâches (Todo List)
 Une application console performante conçue en C++ pour gérer efficacement vos tâches quotidiennes. Ce projet met en œuvre les principes de la programmation orientée objet (POO) et assure la persistance des données via un système de fichiers.
 
 ## Fonctionnalités
