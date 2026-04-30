@@ -13,18 +13,25 @@ Une application console performante conçue en C++ pour gérer efficacement vos 
 - CMake
 - Git & GitHub
 
+## Fonctionnalités
 
-## Features
--  Ajouter / supprimer / modifier des tâches  
--  Priorités (Priority enum)
--  Statuts (Status enum)
--  Gestion des tâches (add, remove, display)
--  Suvegarde dans fichier (FileManager::save)
--  Dates limites (deadlines)
--  Filtrage et tri
--  Mode Aujourd’hui
--  Statistiques
-
+- Gestion des tâches : ajouter, supprimer, modifier et afficher des tâches  
+- Priorités (enum `Priority`) : Basse, Moyenne, Haute  
+- Statuts (enum `Status`) : À faire, En cours, Terminé  
+- Sauvegarde des données dans un fichier (`FileManager::save`)  
+- Dates limites (deadlines)  
+- Filtrage et tri  
+  *(ex : afficher uniquement les tâches de priorité HIGH, trier par urgence)*  
+- Système de notification simulée  
+  *(ex : "Tâche bientôt due")*  
+- Statistiques  
+  *(ex : nombre de tâches DONE / TODO / IN PROGRESS)*  
+- Archivage des tâches terminées  
+  *(déplacer les tâches DONE vers un fichier ou une liste séparée)*  
+- Tâches récurrentes  
+  *(répétition quotidienne / hebdomadaire)*  
+- Mode Aujourd’hui  
+  *(afficher uniquement les tâches dont la date limite est aujourd’hui)*
 
 ## Installation et Utilisation
 Prérequis: 
