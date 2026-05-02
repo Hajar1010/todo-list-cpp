@@ -1,0 +1,22 @@
+{
+  "menu_title": {"fr":"MENU", "ar":"القائمة"},
+  "display_tasks": {"fr":"Afficher les tâches", "ar":"عرض المهام"},
+  "add_work": {"fr":"Ajouter WorkTask", "ar":"إضافة مهمة عمل"},
+  "add_personal": {"fr":"Ajouter PersonalTask", "ar":"إضافة مهمة شخصية"},
+  "add_recurring": {"fr":"Ajouter RecurringTask", "ar":"إضافة مهمة متكررة"},
+  "remove_task": {"fr":"Supprimer tâche", "ar":"حذف مهمة"},
+  "archive_task": {"fr":"Archiver tâche", "ar":"أرشفة مهمة"},
+  "exit": {"fr":"Quitter", "ar":"خروج"},
+  "choice": {"fr":"Choix", "ar":"اختيار"},
+  "priority": {"fr":"Priorité", "ar":"الأولوية"},
+  "status": {"fr":"Statut", "ar":"الحالة"},
+  "title": {"fr":"Titre", "ar":"العنوان"},
+  "description": {"fr":"Description", "ar":"الوصف"},
+  "task_added": {"fr":"Tâche ajoutée", "ar":"تم إضافة المهمة"},
+  "rec_added": {"fr":"Tâche récurrente ajoutée", "ar":"تمت إضافة مهمة متكررة"},
+  "removed": {"fr":"Supprimé", "ar":"تم الحذف"},
+  "invalid": {"fr":"Choix invalide", "ar":"اختيار خاطئ"},
+  "no_tasks": {"fr":"Aucune tâche", "ar":"لا توجد مهام"},
+  "all_tasks": {"fr":"Toutes les tâches", "ar":"جميع المهام"},
+  "index": {"fr":"Index", "ar":"الرقم"}
+}
