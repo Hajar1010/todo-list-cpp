@@ -1,6 +1,9 @@
 #include <iostream>
 #include <limits>
 #include <string>
+#include <fstream>
+#include <map>
+
 #include "../include/TaskManager.h"
 #include "../include/Task.h"
 #include "../include/RecurringTask.h"
@@ -11,27 +14,51 @@
 #include "../include/TodayView.h"
 #include "../include/NotificationManager.h"
 
-enum class Language { FR, EN };
-Language lang;
+#include "json.hpp"
+
+using json = nlohmann::json;
+
+// ---------------- LANGUAGE MANAGER ----------------
+
+class LanguageManager {
+private:
+    std::map<std::string, std::string> texts;
+
+public:
+    void load(const std::string& lang) {
+        std::ifstream file("lang/" + lang + ".json");
+        json j;
+        file >> j;
+
+        texts.clear();
+        for (auto& [key, value] : j.items()) {
+            texts[key] = value;
+        }
+    }
+
+    std::string t(const std::string& key) {
+        return texts[key];
+    }
+};
+
+LanguageManager langManager;
+
+// ---------------- UTIL ----------------
 
 void clearInput() {
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
- 
+
 void pause() {
     std::cout << "\nPress Enter to continue...";
     std::cin.get();
 }
- int langChoice;
-std::cout << "1. Français\n2. English\nChoice: ";
-std::cin >> langChoice;
-clearInput();
 
-lang = (langChoice == 1) ? Language::FR : Language::EN;
+// ---------------- MENU ----------------
 
 void printMenu() {
     std::cout << "\n**************************************\n";
-    std::cout << "*        " << t("menu") << "          *\n";
+    std::cout << "*        " << langManager.t("menu") << "           *\n";
     std::cout << "**************************************\n";
 
     std::cout << "*  1.  Display all tasks             *\n";
@@ -62,12 +89,14 @@ void printMenu() {
     std::cout << "* 17.  Save tasks to file            *\n";
 
     std::cout << "**************************************\n";
-    std::cout << "*  0.  Exit                          *\n";
+    std::cout << "*  0.  " << langManager.t("exit") << "                          *\n";
     std::cout << "**************************************\n";
 
     std::cout << "Choice: ";
 }
- 
+
+// ---------------- INPUT HELPERS ----------------
+
 Priority choosePriority() {
     std::cout << "Priority (1=LOW, 2=MEDIUM, 3=HIGH): ";
     int c; std::cin >> c; clearInput();
@@ -75,7 +104,7 @@ Priority choosePriority() {
     if (c == 2) return Priority::MEDIUM;
     return Priority::LOW;
 }
- 
+
 Status chooseStatus() {
     std::cout << "Status (1=TODO, 2=IN_PROGRESS, 3=DONE): ";
     int c; std::cin >> c; clearInput();
@@ -83,213 +112,206 @@ Status chooseStatus() {
     if (c == 2) return Status::IN_PROGRESS;
     return Status::TODO;
 }
- 
-case 4: {
-    std::string title, desc;
-    Deadline* d;
 
-    getTaskInfo(title, desc, d);
-    Priority p = choosePriority();
-    Status   s = chooseStatus();
-
-    std::cout << "Recurrence (1=DAILY, 2=WEEKLY, 3=MONTHLY): ";
-    int r; std::cin >> r; clearInput();
-
-    Recurrence rec = (r == 1) ? Recurrence::DAILY :
-                     (r == 2) ? Recurrence::WEEKLY : Recurrence::MONTHLY;
-
-    Task* t = new RecurringTask(title, desc, p, s, rec);
-    t->setDeadline(d);
-
-    manager.addTask(t);
-
-    std::cout << "Recurring task added!" << std::endl;
-    pause();
-    break;
+void getTaskInfo(std::string& title, std::string& desc, Deadline*& d) {
+    std::cout << "Title: ";
+    std::getline(std::cin, title);
+    std::cout << "Description: ";
+    std::getline(std::cin, desc);
+    d = nullptr; // keep your logic (or replace with real deadline input)
 }
- 
+
 void displayList(const std::vector<Task*>& list) {
-    if (list.empty()) { std::cout << "No tasks found." << std::endl; return; }
+    if (list.empty()) {
+        std::cout << "No tasks found." << std::endl;
+        return;
+    }
     for (int i = 0; i < (int)list.size(); ++i) {
         std::cout << "[" << i << "] ";
         list[i]->display();
     }
 }
- 
+
+// ---------------- MAIN ----------------
+
 int main() {
     TaskManager manager;
-   
- 
+
+    // ---------------- LANGUAGE SELECT ----------------
+    int langChoice;
+    std::cout << "1. Français\n2. English\nChoice: ";
+    std::cin >> langChoice;
+    clearInput();
+
+    if (langChoice == 1)
+        langManager.load("fr");
+    else
+        langManager.load("en");
+
+    // ---------------- SAMPLE DATA ----------------
+    manager.addTask(new WorkTask("Finish C++ project", "Complete all classes", Priority::HIGH, Status::IN_PROGRESS));
+    manager.addTask(new PersonalTask("Buy groceries", "Milk, bread", Priority::LOW, Status::TODO));
+
+    manager.getTasks()[0]->setDeadline(new Deadline(5, 5, 2025));
+
     int choice;
+
     do {
         printMenu();
-        std::cin >> choice; clearInput();
- 
+        std::cin >> choice;
+        clearInput();
+
         switch (choice) {
- 
+
         case 1:
-            std::cout << "\n=== " << t("all_tasks") << " ===" << std::endl;
+            std::cout << "\n=== " << langManager.t("all_tasks") << " ===\n";
             manager.displayTasks();
             pause();
             break;
- 
-      case 2: case 3: {
-    std::string title, desc;
-    Deadline* d;
 
-    getTaskInfo(title, desc, d);
-    Priority p = choosePriority();
-    Status   s = chooseStatus();
+        case 2: case 3: {
+            std::string title, desc;
+            Deadline* d;
 
-    Task* t;
-    if (choice == 2)
-        t = new WorkTask(title, desc, p, s);
-    else
-        t = new PersonalTask(title, desc, p, s);
+            getTaskInfo(title, desc, d);
+            Priority p = choosePriority();
+            Status s = chooseStatus();
 
-    t->setDeadline(d);
-    manager.addTask(t);
+            Task* t;
+            if (choice == 2)
+                t = new WorkTask(title, desc, p, s);
+            else
+                t = new PersonalTask(title, desc, p, s);
 
-   std::cout << t("task_added") << std::endl;
-    pause();
-    break;
-}
- 
-     case 4: {
-    std::string title, desc;
-    Deadline* d;
+            t->setDeadline(d);
+            manager.addTask(t);
 
-    getTaskInfo(title, desc, d);
-    Priority p = choosePriority();
-    Status   s = chooseStatus();
+            std::cout << langManager.t("task_added") << std::endl;
+            pause();
+            break;
+        }
 
-    std::cout << "Recurrence (1=DAILY, 2=WEEKLY, 3=MONTHLY): ";
-    int r; std::cin >> r; clearInput();
+        case 4: {
+            std::string title, desc;
+            Deadline* d;
 
-    Recurrence rec = (r == 1) ? Recurrence::DAILY :
-                     (r == 2) ? Recurrence::WEEKLY : Recurrence::MONTHLY;
+            getTaskInfo(title, desc, d);
+            Priority p = choosePriority();
+            Status s = chooseStatus();
 
-    Task* t = new RecurringTask(title, desc, p, s, rec);
-    t->setDeadline(d);
+            std::cout << "Recurrence (1=DAILY, 2=WEEKLY, 3=MONTHLY): ";
+            int r; std::cin >> r; clearInput();
 
-    manager.addTask(t);
+            Recurrence rec = (r == 1) ? Recurrence::DAILY :
+                             (r == 2) ? Recurrence::WEEKLY : Recurrence::MONTHLY;
 
-   std::cout << t("rec_added") << std::endl;
-    pause();
-    break;
-}
+            Task* t = new RecurringTask(title, desc, p, s, rec);
+            t->setDeadline(d);
+
+            manager.addTask(t);
+
+            std::cout << langManager.t("rec_added") << std::endl;
+            pause();
+            break;
+        }
+
         case 5:
-            std::cout << "\n=== All Tasks ===" << std::endl;
             manager.displayTasks();
             if (!manager.getTasks().empty()) {
-                std::cout << "Index to remove: ";
+                std::cout << "Index: ";
                 int idx; std::cin >> idx; clearInput();
                 manager.removeTask(idx);
-                std::cout << t("task_removed") << std::endl;
+
+                std::cout << langManager.t("task_removed") << std::endl;
             }
             pause();
             break;
- 
+
         case 6:
-            std::cout << "\n=== All Tasks ===" << std::endl;
             manager.displayTasks();
             if (!manager.getTasks().empty()) {
-                std::cout << "Index to archive: ";
+                std::cout << "Index: ";
                 int idx; std::cin >> idx; clearInput();
                 manager.archiveTask(idx);
             }
             pause();
             break;
- 
+
         case 7:
-            std::cout << "\n=== Urgency Levels ===" << std::endl;
             for (Task* t : manager.getTasks())
-                std::cout << t->getTitle()
-                          << " -> " << t->computeUrgency() << std::endl;
+                std::cout << t->getTitle() << " -> " << t->computeUrgency() << std::endl;
             pause();
             break;
- 
+
         case 8:
             TaskSorter::sortByPriority(manager.getTasks());
-            std::cout << "Sorted by priority." << std::endl;
             manager.displayTasks();
             pause();
             break;
- 
+
         case 9:
             TaskSorter::sortByDeadline(manager.getTasks());
-            std::cout << "Sorted by deadline." << std::endl;
             manager.displayTasks();
             pause();
             break;
- 
+
         case 10: {
             Status s = chooseStatus();
-            auto filtered = TaskFilter::byStatus(manager.getTasks(), s);
-            std::cout << "\n=== Filtered by Status ===" << std::endl;
-            displayList(filtered);
+            auto f = TaskFilter::byStatus(manager.getTasks(), s);
+            displayList(f);
             pause();
             break;
         }
- 
+
         case 11: {
             Priority p = choosePriority();
-            auto filtered = TaskFilter::byPriority(manager.getTasks(), p);
-            std::cout << "\n=== Filtered by Priority ===" << std::endl;
-            displayList(filtered);
+            auto f = TaskFilter::byPriority(manager.getTasks(), p);
+            displayList(f);
             pause();
             break;
         }
- 
-        case 12: {
-            auto od = TaskFilter::overdue(manager.getTasks());
-            std::cout << "\n=== Overdue Tasks ===" << std::endl;
-            displayList(od);
+
+        case 12:
+            displayList(TaskFilter::overdue(manager.getTasks()));
             pause();
             break;
-        }
- 
-        case 13: {
-            auto today = TodayView::getTodayTasks(manager.getTasks());
-            std::cout << "\n=== Today's Tasks ===" << std::endl;
-            displayList(today);
+
+        case 13:
+            displayList(TodayView::getTodayTasks(manager.getTasks()));
             pause();
             break;
-        }
- 
+
         case 14:
-            std::cout << "\n=== Stats ===" << std::endl;
-            std::cout << "Total:     " << TaskStats::totalTasks(manager.getTasks())     << std::endl;
+            std::cout << "Total: " << TaskStats::totalTasks(manager.getTasks()) << std::endl;
             std::cout << "Completed: " << TaskStats::completedTasks(manager.getTasks()) << std::endl;
-            std::cout << "Overdue:   " << TaskStats::overdueTasks(manager.getTasks())   << std::endl;
+            std::cout << "Overdue: " << TaskStats::overdueTasks(manager.getTasks()) << std::endl;
             pause();
             break;
- 
+
         case 15:
-            std::cout << "\n=== Deadline Notifications ===" << std::endl;
             NotificationManager::checkDeadlines(manager.getTasks());
             pause();
             break;
- 
+
         case 16:
             manager.getArchive().displayArchive();
             pause();
             break;
- 
+
         case 17:
             FileManager::save(manager.getTasks());
             pause();
             break;
- 
+
         case 0:
-            std::cout << t("exit") << std::endl;
+            std::cout << langManager.t("exit") << std::endl;
             break;
- 
+
         default:
             std::cout << "Invalid choice." << std::endl;
         }
- 
+
     } while (choice != 0);
- 
+
     return 0;
 }
