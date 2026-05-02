@@ -21,32 +21,41 @@ void pause() {
 }
  
 void printMenu() {
-    std::cout << "\n╔══════════════════════════════════════╗" << std::endl;
-    std::cout << "║         TODO LIST MANAGER            ║" << std::endl;
-    std::cout << "╠══════════════════════════════════════╣" << std::endl;
-    std::cout << "║  1.  Display all tasks               ║" << std::endl;
-    std::cout << "║  2.  Add WorkTask                    ║" << std::endl;
-    std::cout << "║  3.  Add PersonalTask                ║" << std::endl;
-    std::cout << "║  4.  Add RecurringTask               ║" << std::endl;
-    std::cout << "║  5.  Remove task                     ║" << std::endl;
-    std::cout << "║  6.  Archive task                    ║" << std::endl;
-    std::cout << "╠══════════════════════════════════════╣" << std::endl;
-    std::cout << "║  7.  Show urgency levels             ║" << std::endl;
-    std::cout << "║  8.  Sort by priority                ║" << std::endl;
-    std::cout << "║  9.  Sort by deadline                ║" << std::endl;
-    std::cout << "╠══════════════════════════════════════╣" << std::endl;
-    std::cout << "║  10. Filter by status                ║" << std::endl;
-    std::cout << "║  11. Filter by priority              ║" << std::endl;
-    std::cout << "║  12. Show overdue tasks              ║" << std::endl;
-    std::cout << "║  13. Today's view                    ║" << std::endl;
-    std::cout << "╠══════════════════════════════════════╣" << std::endl;
-    std::cout << "║  14. Show stats                      ║" << std::endl;
-    std::cout << "║  15. Check deadline notifications    ║" << std::endl;
-    std::cout << "║  16. Display archive                 ║" << std::endl;
-    std::cout << "║  17. Save tasks to file              ║" << std::endl;
-    std::cout << "╠══════════════════════════════════════╣" << std::endl;
-    std::cout << "║  0.  Exit                            ║" << std::endl;
-    std::cout << "╚══════════════════════════════════════╝" << std::endl;
+    std::cout << "\n**************************************\n";
+    std::cout << "*        TODO LIST MANAGER           *\n";
+    std::cout << "**************************************\n";
+
+    std::cout << "*  1.  Display all tasks             *\n";
+    std::cout << "*  2.  Add WorkTask                  *\n";
+    std::cout << "*  3.  Add PersonalTask              *\n";
+    std::cout << "*  4.  Add RecurringTask             *\n";
+    std::cout << "*  5.  Remove task                   *\n";
+    std::cout << "*  6.  Archive task                  *\n";
+
+    std::cout << "**************************************\n";
+
+    std::cout << "*  7.  Show urgency levels           *\n";
+    std::cout << "*  8.  Sort by priority              *\n";
+    std::cout << "*  9.  Sort by deadline              *\n";
+
+    std::cout << "**************************************\n";
+
+    std::cout << "* 10.  Filter by status              *\n";
+    std::cout << "* 11.  Filter by priority            *\n";
+    std::cout << "* 12.  Show overdue tasks            *\n";
+    std::cout << "* 13.  Today's view                  *\n";
+
+    std::cout << "**************************************\n";
+
+    std::cout << "* 14.  Show stats                    *\n";
+    std::cout << "* 15.  Check deadline notifications  *\n";
+    std::cout << "* 16.  Display archive               *\n";
+    std::cout << "* 17.  Save tasks to file            *\n";
+
+    std::cout << "**************************************\n";
+    std::cout << "*  0.  Exit                          *\n";
+    std::cout << "**************************************\n";
+
     std::cout << "Choice: ";
 }
  
@@ -66,9 +75,28 @@ Status chooseStatus() {
     return Status::TODO;
 }
  
-void getTaskInfo(std::string& title, std::string& desc) {
-    std::cout << "Title: ";       std::getline(std::cin, title);
-    std::cout << "Description: "; std::getline(std::cin, desc);
+case 4: {
+    std::string title, desc;
+    Deadline* d;
+
+    getTaskInfo(title, desc, d);
+    Priority p = choosePriority();
+    Status   s = chooseStatus();
+
+    std::cout << "Recurrence (1=DAILY, 2=WEEKLY, 3=MONTHLY): ";
+    int r; std::cin >> r; clearInput();
+
+    Recurrence rec = (r == 1) ? Recurrence::DAILY :
+                     (r == 2) ? Recurrence::WEEKLY : Recurrence::MONTHLY;
+
+    Task* t = new RecurringTask(title, desc, p, s, rec);
+    t->setDeadline(d);
+
+    manager.addTask(t);
+
+    std::cout << "Recurring task added!" << std::endl;
+    pause();
+    break;
 }
  
 void displayList(const std::vector<Task*>& list) {
@@ -81,21 +109,7 @@ void displayList(const std::vector<Task*>& list) {
  
 int main() {
     TaskManager manager;
- 
-    manager.addTask(new WorkTask("Finish C++ project", "Complete all classes and test",
-                                  Priority::HIGH, Status::IN_PROGRESS));
-    manager.addTask(new WorkTask("Prepare presentation", "Slides and demo video",
-                                  Priority::MEDIUM, Status::TODO));
-    manager.addTask(new PersonalTask("Buy groceries", "Milk, bread, eggs",
-                                     Priority::LOW, Status::TODO));
-    manager.addTask(new PersonalTask("Clean room", "Vacuum and dust",
-                                     Priority::MEDIUM, Status::DONE));
-    manager.addTask(new RecurringTask("Daily standup", "Team meeting",
-                                      Priority::HIGH, Status::TODO,
-                                      Recurrence::DAILY));
- 
-    // setDeadline yqbel Deadline* — 3la hssab Task.h dyalek
-    manager.getTasks()[0]->setDeadline(new Deadline(5, 5, 2025));
+   
  
     int choice;
     do {
@@ -110,35 +124,51 @@ int main() {
             pause();
             break;
  
-        case 2: case 3: {
-            std::string title, desc;
-            getTaskInfo(title, desc);
-            Priority p = choosePriority();
-            Status   s = chooseStatus();
-            if (choice == 2)
-                manager.addTask(new WorkTask(title, desc, p, s));
-            else
-                manager.addTask(new PersonalTask(title, desc, p, s));
-            std::cout << "Task added!" << std::endl;
-            pause();
-            break;
-        }
+      case 2: case 3: {
+    std::string title, desc;
+    Deadline* d;
+
+    getTaskInfo(title, desc, d);
+    Priority p = choosePriority();
+    Status   s = chooseStatus();
+
+    Task* t;
+    if (choice == 2)
+        t = new WorkTask(title, desc, p, s);
+    else
+        t = new PersonalTask(title, desc, p, s);
+
+    t->setDeadline(d);
+    manager.addTask(t);
+
+    std::cout << "Task added!" << std::endl;
+    pause();
+    break;
+}
  
-        case 4: {
-            std::string title, desc;
-            getTaskInfo(title, desc);
-            Priority p = choosePriority();
-            Status   s = chooseStatus();
-            std::cout << "Recurrence (1=DAILY, 2=WEEKLY, 3=MONTHLY): ";
-            int r; std::cin >> r; clearInput();
-            Recurrence rec = (r == 1) ? Recurrence::DAILY :
-                             (r == 2) ? Recurrence::WEEKLY : Recurrence::MONTHLY;
-            manager.addTask(new RecurringTask(title, desc, p, s, rec));
-            std::cout << "Recurring task added!" << std::endl;
-            pause();
-            break;
-        }
- 
+     case 4: {
+    std::string title, desc;
+    Deadline* d;
+
+    getTaskInfo(title, desc, d);
+    Priority p = choosePriority();
+    Status   s = chooseStatus();
+
+    std::cout << "Recurrence (1=DAILY, 2=WEEKLY, 3=MONTHLY): ";
+    int r; std::cin >> r; clearInput();
+
+    Recurrence rec = (r == 1) ? Recurrence::DAILY :
+                     (r == 2) ? Recurrence::WEEKLY : Recurrence::MONTHLY;
+
+    Task* t = new RecurringTask(title, desc, p, s, rec);
+    t->setDeadline(d);
+
+    manager.addTask(t);
+
+    std::cout << "Recurring task added!" << std::endl;
+    pause();
+    break;
+}
         case 5:
             std::cout << "\n=== All Tasks ===" << std::endl;
             manager.displayTasks();
