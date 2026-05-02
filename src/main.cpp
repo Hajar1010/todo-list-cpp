@@ -13,12 +13,12 @@
 #include "../include/TaskStats.h"
 #include "../include/TodayView.h"
 #include "../include/NotificationManager.h"
+#include "../include/Deadline.h"
 
 #include <nlohmann/json.hpp>
 
 using json = nlohmann::json;
 
-// ---------------- LANGUAGE MANAGER ----------------
 class LanguageManager {
 private:
     std::map<std::string, std::map<std::string, std::string>> texts;
@@ -58,7 +58,6 @@ public:
 
 LanguageManager langManager;
 
-// ---------------- INPUT SAFE ----------------
 void clearInput() {
     std::cin.clear();
     std::cin.ignore(10000, '\n');
@@ -69,35 +68,33 @@ void pause() {
     std::cin.get();
 }
 
-// ---------------- MENU ----------------
 void printMenu() {
     std::cout << "\n**************************************\n";
     std::cout << "*      " << langManager.t("menu") << "      *\n";
     std::cout << "**************************************\n";
 
-    std::cout << "* 1.  " << langManager.t("display_tasks") << "\n";
-    std::cout << "* 2.  " << langManager.t("add_work") << "\n";
-    std::cout << "* 3.  " << langManager.t("add_personal") << "\n";
-    std::cout << "* 4.  " << langManager.t("add_recurring") << "\n";
-    std::cout << "* 5.  " << langManager.t("remove_task") << "\n";
-    std::cout << "* 6.  " << langManager.t("archive_task") << "\n";
+    std::cout << "* 1. " << langManager.t("display_tasks") << "\n";
+    std::cout << "* 2. " << langManager.t("add_work") << "\n";
+    std::cout << "* 3. " << langManager.t("add_personal") << "\n";
+    std::cout << "* 4. " << langManager.t("add_recurring") << "\n";
+    std::cout << "* 5. " << langManager.t("remove_task") << "\n";
+    std::cout << "* 6. " << langManager.t("archive_task") << "\n";
+    std::cout << "* 0. " << langManager.t("exit") << "\n";
 
     std::cout << "**************************************\n";
-    std::cout << "* 0.  " << langManager.t("exit") << "\n";
-    std::cout << "**************************************\n";
-
     std::cout << langManager.t("choice") << " ";
 }
 
-// ---------------- HELPERS ----------------
 Priority choosePriority() {
-    std::cout << "Priority (1=LOW, 2=MEDIUM, 3=HIGH): ";
     int c;
+
+    std::cout << "Priority (1=LOW, 2=MEDIUM, 3=HIGH): ";
 
     if (!(std::cin >> c)) {
         clearInput();
         return Priority::LOW;
     }
+
     clearInput();
 
     if (c == 3) return Priority::HIGH;
@@ -106,13 +103,15 @@ Priority choosePriority() {
 }
 
 Status chooseStatus() {
-    std::cout << "Status (1=TODO, 2=IN_PROGRESS, 3=DONE): ";
     int c;
+
+    std::cout << "Status (1=TODO, 2=IN_PROGRESS, 3=DONE): ";
 
     if (!(std::cin >> c)) {
         clearInput();
         return Status::TODO;
     }
+
     clearInput();
 
     if (c == 3) return Status::DONE;
@@ -121,33 +120,50 @@ Status chooseStatus() {
 }
 
 void getTaskInfo(std::string& title, std::string& desc, Deadline*& d) {
-    std::cin.ignore(10000, '\n');
-
     std::cout << "Title: ";
     std::getline(std::cin, title);
 
     std::cout << "Description: ";
     std::getline(std::cin, desc);
 
-    d = nullptr;
+    char choice;
+    std::cout << "Do you want to set a deadline? (y/n): ";
+    std::cin >> choice;
+
+    if (choice == 'y' || choice == 'Y') {
+        int day, month, year;
+
+        std::cout << "Enter day: ";
+        std::cin >> day;
+
+        std::cout << "Enter month: ";
+        std::cin >> month;
+
+        std::cout << "Enter year: ";
+        std::cin >> year;
+
+        d = new Deadline(day, month, year);
+    } else {
+        d = nullptr;
+    }
+
+    clearInput();
 }
 
-// ---------------- MAIN ----------------
 int main() {
-
     TaskManager manager;
 
-    // 🔥 LOAD DICTIONARY (مرة وحدة فقط)
     langManager.load("data/dictionary.json");
 
-    // 🔥 اختيار اللغة
     int langChoice;
+
     std::cout << "1. Français\n2. العربية\nChoice: ";
 
     if (!(std::cin >> langChoice)) {
         clearInput();
         langChoice = 1;
     }
+
     clearInput();
 
     if (langChoice == 1)
@@ -155,12 +171,19 @@ int main() {
     else
         langManager.setLanguage("ar");
 
-    // ---------------- SAMPLE DATA ----------------
-    manager.addTask(new WorkTask("Finish C++ project", "Complete all classes",
-                                 Priority::HIGH, Status::IN_PROGRESS));
+    manager.addTask(new WorkTask(
+        "Finish C++ project",
+        "Complete all classes",
+        Priority::HIGH,
+        Status::IN_PROGRESS
+    ));
 
-    manager.addTask(new PersonalTask("Buy groceries", "Milk, bread",
-                                     Priority::LOW, Status::TODO));
+    manager.addTask(new PersonalTask(
+        "Buy groceries",
+        "Milk, bread",
+        Priority::LOW,
+        Status::TODO
+    ));
 
     manager.getTasks()[0]->setDeadline(new Deadline(5, 5, 2025));
 
@@ -173,47 +196,106 @@ int main() {
             clearInput();
             continue;
         }
+
         clearInput();
 
         switch (choice) {
+            case 1:
+                std::cout << "\n=== " << langManager.t("all_tasks") << " ===\n";
+                manager.displayTasks();
+                pause();
+                break;
 
-        case 1:
-            std::cout << "\n=== " << langManager.t("all_tasks") << " ===\n";
-            manager.displayTasks();
-            pause();
-            break;
+            case 2:
+            case 3: {
+                std::string title, desc;
+                Deadline* d;
 
-        case 2:
-        case 3: {
-            std::string title, desc;
-            Deadline* d;
+                getTaskInfo(title, desc, d);
 
-            getTaskInfo(title, desc, d);
+                Priority p = choosePriority();
+                Status s = chooseStatus();
 
-            Priority p = choosePriority();
-            Status s = chooseStatus();
+                Task* t;
 
-            Task* t;
+                if (choice == 2)
+                    t = new WorkTask(title, desc, p, s);
+                else
+                    t = new PersonalTask(title, desc, p, s);
 
-            if (choice == 2)
-                t = new WorkTask(title, desc, p, s);
-            else
-                t = new PersonalTask(title, desc, p, s);
+                t->setDeadline(d);
+                manager.addTask(t);
 
-            t->setDeadline(d);
-            manager.addTask(t);
+                std::cout << langManager.t("task_added") << std::endl;
+                pause();
+                break;
+            }
 
-            std::cout << langManager.t("task_added") << std::endl;
-            pause();
-            break;
-        }
+            case 4: {
+                std::string title, desc;
+                Deadline* d;
 
-        case 0:
-            std::cout << langManager.t("exit") << std::endl;
-            break;
+                getTaskInfo(title, desc, d);
 
-        default:
-            std::cout << langManager.t("invalid") << std::endl;
+                Priority p = choosePriority();
+                Status s = chooseStatus();
+
+                int interval;
+
+                std::cout << "Enter recurrence interval (days): ";
+                std::cin >> interval;
+                clearInput();
+
+                Task* t = new RecurringTask(
+                    title,
+                    desc,
+                    p,
+                    s,
+                    interval
+                );
+
+                t->setDeadline(d);
+                manager.addTask(t);
+
+                std::cout << "Recurring task added successfully.\n";
+                pause();
+                break;
+            }
+
+            case 5: {
+                int index;
+
+                std::cout << "Enter task index to remove: ";
+                std::cin >> index;
+                clearInput();
+
+                manager.removeTask(index);
+
+                std::cout << "Task removed successfully.\n";
+                pause();
+                break;
+            }
+
+            case 6: {
+                int index;
+
+                std::cout << "Enter task index to archive: ";
+                std::cin >> index;
+                clearInput();
+
+                manager.archiveTask(index);
+
+                std::cout << "Task archived successfully.\n";
+                pause();
+                break;
+            }
+
+            case 0:
+                std::cout << langManager.t("exit") << std::endl;
+                break;
+
+            default:
+                std::cout << langManager.t("invalid") << std::endl;
         }
 
     } while (choice != 0);
