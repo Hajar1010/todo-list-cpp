@@ -1,0 +1,9 @@
+{
+  "menu": "GESTION DES TÂCHES",
+  "choice": "Choix",
+  "exit": "Quitter",
+  "all_tasks": "Toutes les tâches",
+  "task_added": "Tâche ajoutée!",
+  "task_removed": "Tâche supprimée!",
+  "rec_added": "Tâche récurrente ajoutée!"
+}
