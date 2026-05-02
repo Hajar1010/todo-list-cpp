@@ -16,6 +16,9 @@ public:
                   Priority p, Status s,
                   Recurrence r);
 
-    Recurrence getRecurrence() const;
+Recurrence getRecurrence() const;
     void regenerate();
+    int computeUrgency() const override;
+    std::string getType() const override;
+    void display() const override;
 };

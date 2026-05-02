@@ -19,6 +19,7 @@ public:
 
     virtual void display() const;
     virtual int computeUrgency() const = 0;
+    virtual std::string getType() const = 0;
     std::string getTitle() const;
     Priority getPriority() const;
     Status getStatus() const;
@@ -34,6 +35,7 @@ public:
 
 class WorkTask : public Task {
 public:
+    std::string getType() const override { return "WORK"; }
     WorkTask(std::string t, std::string d, Priority p, Status s)
         : Task(t, d, p, s) {}
 
@@ -46,6 +48,7 @@ public:
 
 class PersonalTask : public Task {
 public:
+    std::string getType() const override { return "PERSONAL"; }
     PersonalTask(std::string t, std::string d, Priority p, Status s)
         : Task(t, d, p, s) {}
 

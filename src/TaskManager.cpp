@@ -1,4 +1,4 @@
-#include "TaskManager.h"
+#include "../include/TaskManager.h"
 #include <iostream>
 
 void TaskManager::addTask(Task* task) {
@@ -11,7 +11,7 @@ void TaskManager::displayTasks() const {
         return;
     }
     for (int i = 0; i < (int)tasks.size(); i++) {
-        std::cout << "--- Task " << i + 1 << " ---" << std::endl;
+        std::cout << "--- Task " << i << " ---" << std::endl;
         tasks[i]->display();
     }
 }
@@ -23,6 +23,20 @@ void TaskManager::removeTask(int index) {
     }
 }
 
+void TaskManager::archiveTask(int index) {
+    if (index >= 0 && index < (int)tasks.size()) {
+        archive.archiveTask(tasks[index]);
+        tasks.erase(tasks.begin() + index);
+        std::cout << "Task archived." << std::endl;
+    } else {
+        std::cout << "Invalid index." << std::endl;
+    }
+}
+
 std::vector<Task*>& TaskManager::getTasks() {
     return tasks;
+}
+
+ArchiveManager& TaskManager::getArchive() {
+    return archive;
 }
