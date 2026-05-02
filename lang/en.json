@@ -1,0 +1,9 @@
+{
+  "menu": "TASK MANAGER",
+  "choice": "Choice",
+  "exit": "Exit",
+  "all_tasks": "All Tasks",
+  "task_added": "Task added!",
+  "task_removed": "Task removed!",
+  "rec_added": "Recurring task added!"
+}
