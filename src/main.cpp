@@ -10,7 +10,10 @@
 #include "../include/TaskStats.h"
 #include "../include/TodayView.h"
 #include "../include/NotificationManager.h"
- 
+
+enum class Language { FR, EN };
+Language lang;
+
 void clearInput() {
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
@@ -19,10 +22,16 @@ void pause() {
     std::cout << "\nPress Enter to continue...";
     std::cin.get();
 }
- 
+ int langChoice;
+std::cout << "1. Français\n2. English\nChoice: ";
+std::cin >> langChoice;
+clearInput();
+
+lang = (langChoice == 1) ? Language::FR : Language::EN;
+
 void printMenu() {
     std::cout << "\n**************************************\n";
-    std::cout << "*        TODO LIST MANAGER           *\n";
+    std::cout << "*        " << t("menu") << "          *\n";
     std::cout << "**************************************\n";
 
     std::cout << "*  1.  Display all tasks             *\n";
@@ -119,7 +128,7 @@ int main() {
         switch (choice) {
  
         case 1:
-            std::cout << "\n=== All Tasks ===" << std::endl;
+            std::cout << "\n=== " << t("all_tasks") << " ===" << std::endl;
             manager.displayTasks();
             pause();
             break;
@@ -141,7 +150,7 @@ int main() {
     t->setDeadline(d);
     manager.addTask(t);
 
-    std::cout << "Task added!" << std::endl;
+   std::cout << t("task_added") << std::endl;
     pause();
     break;
 }
@@ -165,7 +174,7 @@ int main() {
 
     manager.addTask(t);
 
-    std::cout << "Recurring task added!" << std::endl;
+   std::cout << t("rec_added") << std::endl;
     pause();
     break;
 }
@@ -176,7 +185,7 @@ int main() {
                 std::cout << "Index to remove: ";
                 int idx; std::cin >> idx; clearInput();
                 manager.removeTask(idx);
-                std::cout << "Task removed!" << std::endl;
+                std::cout << t("task_removed") << std::endl;
             }
             pause();
             break;
@@ -273,7 +282,7 @@ int main() {
             break;
  
         case 0:
-            std::cout << "Goodbye!" << std::endl;
+            std::cout << t("exit") << std::endl;
             break;
  
         default:
