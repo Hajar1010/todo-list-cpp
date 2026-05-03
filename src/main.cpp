@@ -27,17 +27,13 @@ private:
 public:
     void load(const std::string& file) {
         std::ifstream f(file);
-
         if (!f.is_open()) {
             std::cout << "Error loading dictionary!" << std::endl;
             return;
         }
-
         json j;
         f >> j;
-
         texts.clear();
-
         for (auto& [key, value] : j.items()) {
             texts[key]["fr"] = value["fr"];
             texts[key]["ar"] = value["ar"];
@@ -139,7 +135,7 @@ int main() {
     langManager.load("data/dictionary.json");
 
     int langChoice;
-    std::cout << "1. Français\n2. العربية\nChoice: ";
+    std::cout << "1. Francais\n2. العربية\nChoice: ";
     if (!(std::cin >> langChoice)) { clearInput(); langChoice = 1; }
     clearInput();
 
@@ -147,13 +143,6 @@ int main() {
         langManager.setLanguage("fr");
     else
         langManager.setLanguage("ar");
-
-    // ---------------- SAMPLE DATA ----------------
-    manager.addTask(new WorkTask("Finish C++ project", "Complete all classes",
-                                 Priority::HIGH, Status::IN_PROGRESS));
-    manager.addTask(new PersonalTask("Buy groceries", "Milk, bread",
-                                     Priority::LOW, Status::TODO));
-    manager.getTasks()[0]->setDeadline(new Deadline(5, 5, 2025));
 
     int choice = -1;
 
