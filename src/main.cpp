@@ -51,7 +51,6 @@ public:
     std::string t(const std::string& key) {
         if (texts.count(key) && texts[key].count(currentLang))
             return texts[key][currentLang];
-
         return "[" + key + "]";
     }
 };
@@ -74,18 +73,15 @@ void printMenu() {
     std::cout << "\n**************************************\n";
     std::cout << "*      " << langManager.t("menu") << "      *\n";
     std::cout << "**************************************\n";
-
     std::cout << "* 1.  " << langManager.t("display_tasks") << "\n";
     std::cout << "* 2.  " << langManager.t("add_work") << "\n";
     std::cout << "* 3.  " << langManager.t("add_personal") << "\n";
     std::cout << "* 4.  " << langManager.t("add_recurring") << "\n";
     std::cout << "* 5.  " << langManager.t("remove_task") << "\n";
     std::cout << "* 6.  " << langManager.t("archive_task") << "\n";
-
     std::cout << "**************************************\n";
     std::cout << "* 0.  " << langManager.t("exit") << "\n";
     std::cout << "**************************************\n";
-
     std::cout << langManager.t("choice") << " ";
 }
 
@@ -93,13 +89,8 @@ void printMenu() {
 Priority choosePriority() {
     std::cout << "Priority (1=LOW, 2=MEDIUM, 3=HIGH): ";
     int c;
-
-    if (!(std::cin >> c)) {
-        clearInput();
-        return Priority::LOW;
-    }
+    if (!(std::cin >> c)) { clearInput(); return Priority::LOW; }
     clearInput();
-
     if (c == 3) return Priority::HIGH;
     if (c == 2) return Priority::MEDIUM;
     return Priority::LOW;
@@ -108,13 +99,8 @@ Priority choosePriority() {
 Status chooseStatus() {
     std::cout << "Status (1=TODO, 2=IN_PROGRESS, 3=DONE): ";
     int c;
-
-    if (!(std::cin >> c)) {
-        clearInput();
-        return Status::TODO;
-    }
+    if (!(std::cin >> c)) { clearInput(); return Status::TODO; }
     clearInput();
-
     if (c == 3) return Status::DONE;
     if (c == 2) return Status::IN_PROGRESS;
     return Status::TODO;
@@ -135,19 +121,11 @@ void getTaskInfo(std::string& title, std::string& desc, Deadline*& d) {
 
     if (choice == 'y' || choice == 'Y') {
         int day, month, year;
-
-        std::cout << "Enter day: ";
-        std::cin >> day;
-
-        std::cout << "Enter month: ";
-        std::cin >> month;
-
-        std::cout << "Enter year: ";
-        std::cin >> year;
-
+        std::cout << "Enter day: ";   std::cin >> day;
+        std::cout << "Enter month: "; std::cin >> month;
+        std::cout << "Enter year: ";  std::cin >> year;
         d = new Deadline(day, month, year);
-    } 
-    else {
+    } else {
         d = nullptr;
     }
 
@@ -156,20 +134,13 @@ void getTaskInfo(std::string& title, std::string& desc, Deadline*& d) {
 
 // ---------------- MAIN ----------------
 int main() {
-
     TaskManager manager;
 
-    // 🔥 LOAD DICTIONARY (مرة وحدة فقط)
     langManager.load("data/dictionary.json");
 
-    // 🔥 اختيار اللغة
     int langChoice;
     std::cout << "1. Français\n2. العربية\nChoice: ";
-
-    if (!(std::cin >> langChoice)) {
-        clearInput();
-        langChoice = 1;
-    }
+    if (!(std::cin >> langChoice)) { clearInput(); langChoice = 1; }
     clearInput();
 
     if (langChoice == 1)
@@ -180,10 +151,8 @@ int main() {
     // ---------------- SAMPLE DATA ----------------
     manager.addTask(new WorkTask("Finish C++ project", "Complete all classes",
                                  Priority::HIGH, Status::IN_PROGRESS));
-
     manager.addTask(new PersonalTask("Buy groceries", "Milk, bread",
                                      Priority::LOW, Status::TODO));
-
     manager.getTasks()[0]->setDeadline(new Deadline(5, 5, 2025));
 
     int choice = -1;
@@ -191,10 +160,7 @@ int main() {
     do {
         printMenu();
 
-        if (!(std::cin >> choice)) {
-            clearInput();
-            continue;
-        }
+        if (!(std::cin >> choice)) { clearInput(); continue; }
         clearInput();
 
         switch (choice) {
@@ -209,50 +175,40 @@ int main() {
         case 3: {
             std::string title, desc;
             Deadline* d;
-
             getTaskInfo(title, desc, d);
-
             Priority p = choosePriority();
             Status s = chooseStatus();
-
             Task* t;
-
             if (choice == 2)
                 t = new WorkTask(title, desc, p, s);
             else
                 t = new PersonalTask(title, desc, p, s);
-
             t->setDeadline(d);
             manager.addTask(t);
-
             std::cout << langManager.t("task_added") << std::endl;
             pause();
             break;
         }
-            case 6: {
-    int index;
 
-    std::cout << "Enter task index to archive: ";
-    std::cin >> index;
+        case 5: {
+            int index;
+            std::cout << "Enter task index to remove: ";
+            std::cin >> index;
+            manager.removeTask(index);
+            std::cout << "Task removed successfully.\n";
+            pause();
+            break;
+        }
 
-    manager.archiveTask(index);
-
-    std::cout << "Task archived successfully.\n";
-    pause();
-    break;
-}
-            case 5: {
-    int index;
-
-    std::cout << "Enter task index to remove: ";
-    std::cin >> index;
-
-    manager.removeTask(index);
-
-    std::cout << "Task removed successfully.\n";
-    pause();
-    break;
-}
+        case 6: {
+            int index;
+            std::cout << "Enter task index to archive: ";
+            std::cin >> index;
+            manager.archiveTask(index);
+            std::cout << "Task archived successfully.\n";
+            pause();
+            break;
+        }
 
         case 0:
             std::cout << langManager.t("exit") << std::endl;
@@ -265,50 +221,4 @@ int main() {
     } while (choice != 0);
 
     return 0;
-}    why do tehy do not show me the txt to set a deadline and make it archive    here is   teh deadlien .h #pragma once
-#include <string>
-#include <ctime>
-
-class Deadline {
-private:
-    std::tm date;
-
-public:
-    Deadline(int day, int month, int year);
-
-    int getDay() const;
-    int getMonth() const;
-    int getYear() const;
-
-    std::string toString() const;
-    int daysLeft() const;
-};        and deaadline,cpp #include "../include/Deadline.h"
-#include <cstdio>
-#include <ctime>
-
-Deadline::Deadline(int day, int month, int year) {
-    date = {};
-    date.tm_mday = day;
-    date.tm_mon  = month - 1;
-    date.tm_year = year - 1900;
-    mktime(&date);
-}
-
-int Deadline::getDay()   const { return date.tm_mday; }
-int Deadline::getMonth() const { return date.tm_mon + 1; }
-int Deadline::getYear()  const { return date.tm_year + 1900; }
-
-std::string Deadline::toString() const {
-    char buf[20];
-    snprintf(buf, sizeof(buf), "%02d/%02d/%04d",
-             date.tm_mday, date.tm_mon + 1, date.tm_year + 1900);
-    return std::string(buf);
-}
-
-int Deadline::daysLeft() const {
-    std::time_t now  = std::time(nullptr);
-    std::tm target   = date;
-    std::time_t t    = mktime(&target);
-    double diff      = difftime(t, now);
-    return static_cast<int>(diff / 86400);
 }
