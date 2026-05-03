@@ -129,7 +129,29 @@ void getTaskInfo(std::string& title, std::string& desc, Deadline*& d) {
     std::cout << "Description: ";
     std::getline(std::cin, desc);
 
-    d = nullptr;
+    char choice;
+    std::cout << "Do you want to set a deadline? (y/n): ";
+    std::cin >> choice;
+
+    if (choice == 'y' || choice == 'Y') {
+        int day, month, year;
+
+        std::cout << "Enter day: ";
+        std::cin >> day;
+
+        std::cout << "Enter month: ";
+        std::cin >> month;
+
+        std::cout << "Enter year: ";
+        std::cin >> year;
+
+        d = new Deadline(day, month, year);
+    } 
+    else {
+        d = nullptr;
+    }
+
+    clearInput();
 }
 
 // ---------------- MAIN ----------------
@@ -207,6 +229,30 @@ int main() {
             pause();
             break;
         }
+            case 6: {
+    int index;
+
+    std::cout << "Enter task index to archive: ";
+    std::cin >> index;
+
+    manager.archiveTask(index);
+
+    std::cout << "Task archived successfully.\n";
+    pause();
+    break;
+}
+            case 5: {
+    int index;
+
+    std::cout << "Enter task index to remove: ";
+    std::cin >> index;
+
+    manager.removeTask(index);
+
+    std::cout << "Task removed successfully.\n";
+    pause();
+    break;
+}
 
         case 0:
             std::cout << langManager.t("exit") << std::endl;
@@ -219,4 +265,50 @@ int main() {
     } while (choice != 0);
 
     return 0;
+}    why do tehy do not show me the txt to set a deadline and make it archive    here is   teh deadlien .h #pragma once
+#include <string>
+#include <ctime>
+
+class Deadline {
+private:
+    std::tm date;
+
+public:
+    Deadline(int day, int month, int year);
+
+    int getDay() const;
+    int getMonth() const;
+    int getYear() const;
+
+    std::string toString() const;
+    int daysLeft() const;
+};        and deaadline,cpp #include "../include/Deadline.h"
+#include <cstdio>
+#include <ctime>
+
+Deadline::Deadline(int day, int month, int year) {
+    date = {};
+    date.tm_mday = day;
+    date.tm_mon  = month - 1;
+    date.tm_year = year - 1900;
+    mktime(&date);
+}
+
+int Deadline::getDay()   const { return date.tm_mday; }
+int Deadline::getMonth() const { return date.tm_mon + 1; }
+int Deadline::getYear()  const { return date.tm_year + 1900; }
+
+std::string Deadline::toString() const {
+    char buf[20];
+    snprintf(buf, sizeof(buf), "%02d/%02d/%04d",
+             date.tm_mday, date.tm_mon + 1, date.tm_year + 1900);
+    return std::string(buf);
+}
+
+int Deadline::daysLeft() const {
+    std::time_t now  = std::time(nullptr);
+    std::tm target   = date;
+    std::time_t t    = mktime(&target);
+    double diff      = difftime(t, now);
+    return static_cast<int>(diff / 86400);
 }
