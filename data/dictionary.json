@@ -1,22 +1,205 @@
 {
-  "menu_title": {"fr":"MENU", "ar":"القائمة"},
-  "display_tasks": {"fr":"Afficher les taches", "ar":"عرض المهام"},
-  "add_work": {"fr":"Ajouter WorkTask", "ar":"إضافة مهمة عمل"},
-  "add_personal": {"fr":"Ajouter PersonalTask", "ar":"إضافة مهمة شخصية"},
-  "add_recurring": {"fr":"Ajouter RecurringTask", "ar":"إضافة مهمة متكررة"},
-  "remove_task": {"fr":"Supprimer tache", "ar":"حذف مهمة"},
-  "archive_task": {"fr":"Archiver tache", "ar":"أرشفة مهمة"},
-  "exit": {"fr":"Quitter", "ar":"خروج"},
-  "choice": {"fr":"Choix", "ar":"اختيار"},
-  "priority": {"fr":"Priorite", "ar":"الأولوية"},
-  "status": {"fr":"Statut", "ar":"الحالة"},
-  "title": {"fr":"Titre", "ar":"العنوان"},
-  "description": {"fr":"Description", "ar":"الوصف"},
-  "task_added": {"fr":"Tache ajoutee", "ar":"تم إضافة المهمة"},
-  "rec_added": {"fr":"Tache recurrente ajoutee", "ar":"تمت إضافة مهمة متكررة"},
-  "removed": {"fr":"Supprime", "ar":"تم الحذف"},
-  "invalid": {"fr":"Choix invalide", "ar":"اختيار خاطئ"},
-  "no_tasks": {"fr":"Aucune tache", "ar":"لا توجد مهام"},
-  "all_tasks": {"fr":"Toutes les taches", "ar":"جميع المهام"},
-  "index": {"fr":"Index", "ar":"الرقم"}
+  "menu_title": {
+    "en": "MENU",
+    "fr": "MENU"
+  },
+
+  "display_tasks": {
+    "en": "Display tasks",
+    "fr": "Afficher les taches"
+  },
+  "add_work": {
+    "en": "Add Work Task",
+    "fr": "Ajouter tache de travail"
+  },
+  "add_personal": {
+    "en": "Add Personal Task",
+    "fr": "Ajouter tache personnelle"
+  },
+  "add_recurring": {
+    "en": "Add Recurring Task",
+    "fr": "Ajouter tache recurrente"
+  },
+
+  "remove_task": {
+    "en": "Remove task",
+    "fr": "Supprimer tache"
+  },
+  "archive_task": {
+    "en": "Archive task",
+    "fr": "Archiver tache"
+  },
+
+  "sort_priority": {
+    "en": "Sort by priority",
+    "fr": "Trier par priorite"
+  },
+  "sort_deadline": {
+    "en": "Sort by deadline",
+    "fr": "Trier par echeance"
+  },
+
+  "filter_status": {
+    "en": "Filter by status",
+    "fr": "Filtrer par statut"
+  },
+  "filter_priority": {
+    "en": "Filter by priority",
+    "fr": "Filtrer par priorite"
+  },
+
+  "overdue_tasks": {
+    "en": "Overdue tasks",
+    "fr": "Taches en retard"
+  },
+  "today_view": {
+    "en": "Today's view",
+    "fr": "Vue du jour"
+  },
+
+  "stats": {
+    "en": "Stats",
+    "fr": "Statistiques"
+  },
+  "notifications": {
+    "en": "Notifications",
+    "fr": "Notifications"
+  },
+  "save_file": {
+    "en": "Save to file",
+    "fr": "Sauvegarder fichier"
+  },
+
+  "exit": {
+    "en": "Exit",
+    "fr": "Quitter"
+  },
+  "choice": {
+    "en": "Choice",
+    "fr": "Choix"
+  },
+
+  "press_enter": {
+    "en": "Press Enter to continue...",
+    "fr": "Appuye Entrer pour continuer..."
+  },
+
+  "priority_prompt": {
+    "en": "Priority (1=LOW, 2=MEDIUM, 3=HIGH): ",
+    "fr": "Priorite (1=FAIBLE, 2=MOYENNE, 3=HAUTE): "
+  },
+  "status_prompt": {
+    "en": "Status (1=TODO, 2=IN_PROGRESS, 3=DONE): ",
+    "fr": "Statut (1=A FAIRE, 2=EN COURS, 3=TERMINE): "
+  },
+  "title_prompt": {
+    "en": "Title: ",
+    "fr": "Titre: "
+  },
+  "desc_prompt": {
+    "en": "Description: ",
+    "fr": "Description: "
+  },
+  "deadline_prompt": {
+    "en": "Deadline? (y/n): ",
+    "fr": "Echeance? (o/n): "
+  },
+
+  "recurrence_prompt": {
+    "en": "Recurrence (1=DAILY, 2=WEEKLY, 3=MONTHLY): ",
+    "fr": "Recurrence (1=QUOTIDIEN, 2=HEBDO, 3=MENSUEL): "
+  },
+
+  "index_remove": {
+    "en": "Index to remove",
+    "fr": "Index a supprimer"
+  },
+  "index_archive": {
+    "en": "Index to archive",
+    "fr": "Index a archiver"
+  },
+
+  "task_added": {
+    "en": "Task added!",
+    "fr": "Tache ajoutee!"
+  },
+  "rec_added": {
+    "en": "Recurring task added!",
+    "fr": "Tache recurrente ajoutee!"
+  },
+  "removed": {
+    "en": "Task removed!",
+    "fr": "Tache supprimee!"
+  },
+  "archived": {
+    "en": "Task archived!",
+    "fr": "Tache archivee!"
+  },
+
+  "invalid": {
+    "en": "Invalid choice",
+    "fr": "Choix invalide"
+  },
+
+  "no_tasks": {
+    "en": "No tasks found.",
+    "fr": "Aucune tache trouvee."
+  },
+
+  "title": {
+    "en": "Title",
+    "fr": "Titre"
+  },
+  "description": {
+    "en": "Description",
+    "fr": "Description"
+  },
+  "priority": {
+    "en": "Priority",
+    "fr": "Priorite"
+  },
+  "status": {
+    "en": "Status",
+    "fr": "Statut"
+  },
+
+  "low": {
+    "en": "Low",
+    "fr": "Faible"
+  },
+  "medium": {
+    "en": "Medium",
+    "fr": "Moyenne"
+  },
+  "high": {
+    "en": "High",
+    "fr": "Haute"
+  },
+
+  "todo": {
+    "en": "To Do",
+    "fr": "A faire"
+  },
+  "in_progress": {
+    "en": "In Progress",
+    "fr": "En cours"
+  },
+  "done": {
+    "en": "Done",
+    "fr": "Termine"
+  },
+
+  "deadline": {
+    "en": "Deadline",
+    "fr": "Echeance"
+  },
+  "days_left": {
+    "en": "days left",
+    "fr": "jours restants"
+  },
+
+  "urgency": {
+    "en": "Urgency",
+    "fr": "Urgence"
+  }
 }
