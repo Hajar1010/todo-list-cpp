@@ -13,7 +13,6 @@
 #include "../include/TaskStats.h"
 #include "../include/TodayView.h"
 #include "../include/NotificationManager.h"
-
 #include <nlohmann/json.hpp>
 
 using json = nlohmann::json;
