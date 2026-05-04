@@ -178,6 +178,33 @@ int main() {
             pause();
             break;
         }
+            case 4: {
+    std::string title, desc;
+    Deadline* d;
+
+    getTaskInfo(title, desc, d);
+
+    Priority p = choosePriority();
+    Status s = chooseStatus();
+
+    std::cout << "Recurrence (1=DAILY, 2=WEEKLY, 3=MONTHLY): ";
+    int r;
+    std::cin >> r;
+    clearInput();
+
+    Recurrence rec = (r == 1) ? Recurrence::DAILY :
+                     (r == 2) ? Recurrence::WEEKLY :
+                     Recurrence::MONTHLY;
+
+    Task* t = new RecurringTask(title, desc, p, s, rec);
+    t->setDeadline(d);
+
+    manager.addTask(t);
+
+    std::cout << langManager.t("task_added") << std::endl;
+    pause();
+    break;
+}
 
         case 5: {
             int index;
