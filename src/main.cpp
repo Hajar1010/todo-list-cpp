@@ -18,11 +18,11 @@
 
 using json = nlohmann::json;
 
-// ---------------- LANGUAGE MANAGER ----------------
+// ---------------- LANGUAGE MANAGER (EN + FR ONLY) ----------------
 class LanguageManager {
 private:
     std::map<std::string, std::map<std::string, std::string>> texts;
-    std::string currentLang = "fr";
+    std::string currentLang = "en";
 
 public:
     void load(const std::string& file) {
@@ -31,17 +31,23 @@ public:
             std::cout << "Error loading dictionary!" << std::endl;
             return;
         }
+
         json j;
         f >> j;
+
         texts.clear();
+
         for (auto& [key, value] : j.items()) {
+            texts[key]["en"] = value["en"];
             texts[key]["fr"] = value["fr"];
-            texts[key]["ar"] = value["ar"];
         }
     }
 
     void setLanguage(const std::string& lang) {
-        currentLang = lang;
+        if (lang == "fr" || lang == "en")
+            currentLang = lang;
+        else
+            currentLang = "en";
     }
 
     std::string t(const std::string& key) {
@@ -87,6 +93,7 @@ Priority choosePriority() {
     int c;
     if (!(std::cin >> c)) { clearInput(); return Priority::LOW; }
     clearInput();
+
     if (c == 3) return Priority::HIGH;
     if (c == 2) return Priority::MEDIUM;
     return Priority::LOW;
@@ -97,6 +104,7 @@ Status chooseStatus() {
     int c;
     if (!(std::cin >> c)) { clearInput(); return Status::TODO; }
     clearInput();
+
     if (c == 3) return Status::DONE;
     if (c == 2) return Status::IN_PROGRESS;
     return Status::TODO;
@@ -112,14 +120,14 @@ void getTaskInfo(std::string& title, std::string& desc, Deadline*& d) {
     std::getline(std::cin, desc);
 
     char choice;
-    std::cout << "Do you want to set a deadline? (y/n): ";
+    std::cout << "Do you want a deadline? (y/n): ";
     std::cin >> choice;
 
     if (choice == 'y' || choice == 'Y') {
         int day, month, year;
-        std::cout << "Enter day: ";   std::cin >> day;
-        std::cout << "Enter month: "; std::cin >> month;
-        std::cout << "Enter year: ";  std::cin >> year;
+        std::cout << "Day: "; std::cin >> day;
+        std::cout << "Month: "; std::cin >> month;
+        std::cout << "Year: "; std::cin >> year;
         d = new Deadline(day, month, year);
     } else {
         d = nullptr;
@@ -134,22 +142,29 @@ int main() {
 
     langManager.load("data/dictionary.json");
 
+    // -------- LANGUAGE SELECTION --------
     int langChoice;
-    std::cout << "1. Francais\n2. العربية\nChoice: ";
-    if (!(std::cin >> langChoice)) { clearInput(); langChoice = 1; }
+    std::cout << "1. English\n2. Français\nChoice: ";
+    if (!(std::cin >> langChoice)) {
+        clearInput();
+        langChoice = 1;
+    }
     clearInput();
 
-    if (langChoice == 1)
+    if (langChoice == 2)
         langManager.setLanguage("fr");
     else
-        langManager.setLanguage("ar");
+        langManager.setLanguage("en");
 
-    int choice = -1;
+    int choice;
 
     do {
         printMenu();
 
-        if (!(std::cin >> choice)) { clearInput(); continue; }
+        if (!(std::cin >> choice)) {
+            clearInput();
+            continue;
+        }
         clearInput();
 
         switch (choice) {
@@ -164,17 +179,41 @@ int main() {
         case 3: {
             std::string title, desc;
             Deadline* d;
+
             getTaskInfo(title, desc, d);
+
             Priority p = choosePriority();
             Status s = chooseStatus();
+
             Task* t;
             if (choice == 2)
                 t = new WorkTask(title, desc, p, s);
             else
                 t = new PersonalTask(title, desc, p, s);
+
             t->setDeadline(d);
             manager.addTask(t);
+
             std::cout << langManager.t("task_added") << std::endl;
+            pause();
+            break;
+        }
+
+        case 4: {
+            std::string title, desc;
+            Deadline* d;
+
+            getTaskInfo(title, desc, d);
+
+            Priority p = choosePriority();
+            Status s = chooseStatus();
+
+            Task* t = new RecurringTask(title, desc, p, s);
+            t->setDeadline(d);
+
+            manager.addTask(t);
+
+            std::cout << "Recurring task added.\n";
             pause();
             break;
         }
@@ -183,8 +222,14 @@ int main() {
             int index;
             std::cout << "Enter task index to remove: ";
             std::cin >> index;
-            manager.removeTask(index);
-            std::cout << "Task removed successfully.\n";
+            clearInput();
+
+            if (!manager.removeTask(index)) {
+                std::cout << "Invalid index!\n";
+            } else {
+                std::cout << "Task removed successfully.\n";
+            }
+
             pause();
             break;
         }
@@ -193,8 +238,14 @@ int main() {
             int index;
             std::cout << "Enter task index to archive: ";
             std::cin >> index;
-            manager.archiveTask(index);
-            std::cout << "Task archived successfully.\n";
+            clearInput();
+
+            if (!manager.archiveTask(index)) {
+                std::cout << "Invalid index!\n";
+            } else {
+                std::cout << "Task archived successfully.\n";
+            }
+
             pause();
             break;
         }
