@@ -154,6 +154,15 @@ data/dictionary.json
 ```
 
 ---
+## Compétences mises en œuvre
+
+- Programmation orientée objet (héritage, polymorphisme)
+- Gestion de fichiers
+- STL (vector, map, etc.)
+- Architecture modulaire
+- Design propre et extensible
+
+---
 
 ##  Dépendances
 
@@ -163,4 +172,10 @@ Installation (Ubuntu) :
 
 ```bash
 sudo apt install nlohmann-json3-dev
+```
+---
+## Contributors
+- @Hajar1010
+- @RomaSd4120
+- @faragimarwa-stack
 
