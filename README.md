@@ -1,71 +1,166 @@
-# Gestionnaire de Tâches (Todo List)
-Une application console performante conçue en C++ pour gérer efficacement vos tâches quotidiennes. Ce projet met en œuvre les principes de la programmation orientée objet (POO) et assure la persistance des données via un système de fichiers.
+# Gestionnaire de Tâches (Application Console en C++)
 
-## Fonctionnalités
-- Gestion complète des tâches : Ajouter, modifier ou supprimer des tâches en toute simplicité.
-- Organisation avancée : Définition de priorités (Basse, Moyenne, Haute) et suivi du statut (À faire, En cours, Terminé).
+Une application de gestion de tâches en ligne de commande développée en C++. Elle permet de créer, organiser, filtrer et suivre des tâches avec support multilingue (anglais/français).
 
-- Persistance des données : Sauvegarde automatique et chargement des tâches depuis un fichier local pour ne jamais perdre vos informations.
-- Interface Intuitive : Navigation simplifiée via une interface en ligne de commande (CLI).
-
-## Technologies utilisées
-- C++
-- CMake
-- Git & GitHub
+---
 
 ## Fonctionnalités
 
-- Gestion des tâches : ajouter, supprimer, modifier et afficher des tâches  
-- Priorités (enum `Priority`) : Basse, Moyenne, Haute  
-- Statuts (enum `Status`) : À faire, En cours, Terminé  
-- Sauvegarde des données dans un fichier (`FileManager::save`)  
-- Dates limites (deadlines)  
-- Filtrage et tri  
-  *(ex : afficher uniquement les tâches de priorité HIGH, trier par urgence)*  
-- Système de notification simulée  
-  *(ex : "Tâche bientôt due")*  
-- Statistiques  
-  *(ex : nombre de tâches DONE / TODO / IN PROGRESS)*  
-- Archivage des tâches terminées  
-  *(déplacer les tâches DONE vers un fichier ou une liste séparée)*  
-- Tâches récurrentes  
-  *(répétition quotidienne / hebdomadaire)*  
-- Mode Aujourd’hui  
-  *(afficher uniquement les tâches dont la date limite est aujourd’hui)*
+### Gestion des tâches
 
-## Installation et Utilisation
-Prérequis: 
-- Un compilateur C++ (GCC, Clang ou MSVC)
-- CMake (version 3.10 ou supérieure)
+* Ajouter des tâches **professionnelles** et **personnelles**
+* Ajouter des tâches **récurrentes** (quotidiennes / hebdomadaires / mensuelles)
+* Définir une **date limite**, une **priorité** et un **statut**
+* Supprimer ou archiver des tâches
 
-Compilation:
-Pour compiler le projet, exécutez les commandes suivantes dans votre terminal :
+###  Organisation
 
-```Bash
-# Créer le répertoire de build
-mkdir build
-cd build
+* Trier les tâches par :
 
-# Générer les fichiers de build avec CMake
-cmake ..
+  * Priorité
+  * Date limite
+* Filtrer les tâches par :
 
-# Compiler le projet
-make
+  * Statut
+  * Priorité
+  * Tâches en retard
+  * Tâches du jour
+
+###  Statistiques
+
+* Affichage du nombre total de tâches
+* Statistiques générales des tâches
+
+###  Notifications
+
+* Vérification des tâches en retard ou proches de leur échéance
+
+###  Sauvegarde
+
+* Sauvegarde des tâches dans un fichier via `FileManager`
+
+###  Multilingue
+
+* Anglais 🇬🇧
+* Français 🇫🇷
+
+---
+
+## Structure du projet
+
+Le projet suit une architecture classique avec séparation entre les fichiers d’en-tête (.h) et les fichiers d’implémentation (.cpp).
+
 ```
-Exécution:
-Une fois la compilation terminée, lancez l'application :
+include/
+ ├── TaskManager.h
+ ├── Task.h
+ ├── RecurringTask.h
+ ├── FileManager.h
+ ├── TaskFilter.h
+ ├── TaskSorter.h
+ ├── TaskStats.h
+ ├── TodayView.h
+ ├── NotificationManager.h
+ ├── LanguageManager.h
 
-```Bash
-./todo_list_cpp
+
+src/
+ ├── TaskManager.cpp
+ ├── Task.cpp
+ ├── RecurringTask.cpp
+ ├── FileManager.cpp
+ ├── TaskFilter.cpp
+ ├── TaskSorter.cpp
+ ├── TaskStats.cpp
+ ├── TodayView.cpp
+ ├── NotificationManager.cpp
+ ├── LanguageManager.cpp
+ └── main.cpp
+
+data/
+ └── dictionary.json
 ```
-## Structure du Projet
-```src/ ```: Contient les fichiers sources (.cpp).
 
-```include/ ```: Contient les fichiers d'en-tête (.h).
+Chaque fichier `.cpp` dans `src/` correspond à un fichier `.h` dans `include/`, ce qui permet une séparation claire entre interface et implémentation.
 
-```CMakeLists.txt``` : Configuration du projet pour CMake.
+---
 
-```data/``` : Répertoire de stockage pour les fichiers de sauvegarde.
+##  Compilation
 
-## Contribution
-Les contributions sont les bienvenues ! N'hésitez pas à ouvrir une issue ou à soumettre une pull request pour améliorer ce gestionnaire de tâches.
+### Prérequis
+
+* C++17 ou plus
+* g++ ou clang++
+* Bibliothèque `nlohmann/json`
+
+### Compilation simple
+
+```bash
+ g++ src/main.cpp -o taskmanager
+```
+
+### Compilation multi-fichiers
+
+```bash
+ g++ src/*.cpp -o taskmanager
+```
+
+---
+
+##  Exécution
+
+```bash
+./taskmanager
+```
+
+---
+
+##  Menu principal
+
+```
+1  - Afficher les tâches
+2  - Ajouter une tâche professionnelle
+3  - Ajouter une tâche personnelle
+4  - Ajouter une tâche récurrente
+5  - Supprimer une tâche
+6  - Archiver une tâche
+7  - Trier par priorité
+8  - Trier par date limite
+9  - Filtrer par statut
+10 - Filtrer par priorité
+11 - Tâches en retard
+12 - Vue du jour
+13 - Statistiques
+14 - Notifications
+15 - Sauvegarder dans un fichier
+0  - Quitter
+```
+
+---
+
+##  Système de langue
+
+Au démarrage, l’utilisateur choisit la langue :
+
+```
+1. Anglais
+2. Français
+```
+
+Les traductions sont chargées depuis :
+
+```
+data/dictionary.json
+```
+
+---
+
+##  Dépendances
+
+* [nlohmann/json](https://github.com/nlohmann/json)
+
+Installation (Ubuntu) :
+
+```bash
+sudo apt install nlohmann-json3-dev
+
