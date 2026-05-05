@@ -1,5 +1,9 @@
 #include "../include/RecurringTask.h"
+#include "../include/LanguageManager.h"
 #include <iostream>
+
+extern LanguageManager langManager;
+#define T(x) langManager.t(x)
 
 std::string recurrenceStr(Recurrence r) {
     switch (r) {
@@ -37,5 +41,22 @@ std::string RecurringTask::getType() const {
 
 void RecurringTask::display() const {
     Task::display();
-    std::cout << "   Recurrence: " << recurrenceStr(recurrence) << std::endl;
+
+    std::cout << "   " << T("recurrence_label") << ": ";
+
+    switch (recurrence) {
+        case Recurrence::DAILY:
+            std::cout << T("daily");
+            break;
+
+        case Recurrence::WEEKLY:
+            std::cout << T("weekly");
+            break;
+
+        case Recurrence::MONTHLY:
+            std::cout << T("monthly");
+            break;
+    }
+
+    std::cout << std::endl;
 }

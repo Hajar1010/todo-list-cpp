@@ -3,7 +3,6 @@
     "en": "MENU",
     "fr": "MENU"
   },
-
   "display_tasks": {
     "en": "Display tasks",
     "fr": "Afficher les taches"
@@ -20,7 +19,6 @@
     "en": "Add Recurring Task",
     "fr": "Ajouter tache recurrente"
   },
-
   "remove_task": {
     "en": "Remove task",
     "fr": "Supprimer tache"
@@ -29,7 +27,6 @@
     "en": "Archive task",
     "fr": "Archiver tache"
   },
-
   "sort_priority": {
     "en": "Sort by priority",
     "fr": "Trier par priorite"
@@ -38,7 +35,6 @@
     "en": "Sort by deadline",
     "fr": "Trier par echeance"
   },
-
   "filter_status": {
     "en": "Filter by status",
     "fr": "Filtrer par statut"
@@ -47,7 +43,6 @@
     "en": "Filter by priority",
     "fr": "Filtrer par priorite"
   },
-
   "overdue_tasks": {
     "en": "Overdue tasks",
     "fr": "Taches en retard"
@@ -56,7 +51,6 @@
     "en": "Today's view",
     "fr": "Vue du jour"
   },
-
   "stats": {
     "en": "Stats",
     "fr": "Statistiques"
@@ -69,7 +63,6 @@
     "en": "Save to file",
     "fr": "Sauvegarder fichier"
   },
-
   "exit": {
     "en": "Exit",
     "fr": "Quitter"
@@ -78,12 +71,10 @@
     "en": "Choice",
     "fr": "Choix"
   },
-
   "press_enter": {
     "en": "Press Enter to continue...",
     "fr": "Appuye Entrer pour continuer..."
   },
-
   "priority_prompt": {
     "en": "Priority (1=LOW, 2=MEDIUM, 3=HIGH): ",
     "fr": "Priorite (1=FAIBLE, 2=MOYENNE, 3=HAUTE): "
@@ -104,12 +95,22 @@
     "en": "Deadline? (y/n): ",
     "fr": "Echeance? (o/n): "
   },
-
+  "deadline_day": {
+    "en": "Day (1-31): ",
+    "fr": "Jour (1-31): "
+  },
+  "deadline_month": {
+    "en": "Month (1-12): ",
+    "fr": "Mois (1-12): "
+  },
+  "deadline_year": {
+    "en": "Year (e.g. 2025): ",
+    "fr": "Annee (ex: 2025): "
+  },
   "recurrence_prompt": {
     "en": "Recurrence (1=DAILY, 2=WEEKLY, 3=MONTHLY): ",
     "fr": "Recurrence (1=QUOTIDIEN, 2=HEBDO, 3=MENSUEL): "
   },
-
   "index_remove": {
     "en": "Index to remove",
     "fr": "Index a supprimer"
@@ -118,7 +119,18 @@
     "en": "Index to archive",
     "fr": "Index a archiver"
   },
-
+  "title_remove": {
+    "en": "Title of task to remove",
+    "fr": "Titre de la tache a supprimer"
+  },
+  "title_archive": {
+    "en": "Title of task to archive",
+    "fr": "Titre de la tache a archiver"
+  },
+  "task_not_found": {
+    "en": "No task found.",
+    "fr": "Aucune tache trouvee."
+  },
   "task_added": {
     "en": "Task added!",
     "fr": "Tache ajoutee!"
@@ -135,17 +147,14 @@
     "en": "Task archived!",
     "fr": "Tache archivee!"
   },
-
   "invalid": {
     "en": "Invalid choice",
     "fr": "Choix invalide"
   },
-
   "no_tasks": {
     "en": "No tasks found.",
     "fr": "Aucune tache trouvee."
   },
-
   "title": {
     "en": "Title",
     "fr": "Titre"
@@ -162,7 +171,6 @@
     "en": "Status",
     "fr": "Statut"
   },
-
   "low": {
     "en": "Low",
     "fr": "Faible"
@@ -175,7 +183,6 @@
     "en": "High",
     "fr": "Haute"
   },
-
   "todo": {
     "en": "To Do",
     "fr": "A faire"
@@ -188,7 +195,6 @@
     "en": "Done",
     "fr": "Termine"
   },
-
   "deadline": {
     "en": "Deadline",
     "fr": "Echeance"
@@ -197,9 +203,48 @@
     "en": "days left",
     "fr": "jours restants"
   },
-
   "urgency": {
     "en": "Urgency",
     "fr": "Urgence"
+  },
+  "title_or_index_remove": {
+    "en": "Title or index to remove",
+    "fr": "Titre ou index a supprimer"
+  },
+  "title_or_index_archive": {
+    "en": "Title or index to archive",
+    "fr": "Titre ou index a archiver"
+  },
+  "recurrence_label": {
+    "en": "Recurrence",
+    "fr": "Recurrence"
+  },
+  "daily": {
+    "en": "DAILY",
+    "fr": "QUOTIDIEN"
+  },
+  "weekly": {
+    "en": "WEEKLY",
+    "fr": "HEBDOMADAIRE"
+  },
+  "monthly": {
+    "en": "MONTHLY",
+    "fr": "MENSUEL"
+  },
+  "invalid_day": {
+    "en": "Invalid! Day must be between 1 and 31.",
+    "fr": "Invalide! Le jour doit etre entre 1 et 31."
+  },
+  "invalid_month": {
+    "en": "Invalid! Month must be between 1 and 12.",
+    "fr": "Invalide! Le mois doit etre entre 1 et 12."
+  },
+  "invalid_year": {
+    "en": "Invalid! Year must be between 2000 and 2100.",
+    "fr": "Invalide! L'annee doit etre entre 2000 et 2100."
+  },
+  "invalid_choice_123": {
+    "en": "Invalid! Please enter 1, 2 or 3.",
+    "fr": "Invalide! Entrez 1, 2 ou 3."
   }
 }
