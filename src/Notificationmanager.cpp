@@ -1,5 +1,10 @@
 #include "../include/NotificationManager.h"
+#include "../include/LanguageManager.h"
 #include <iostream>
+
+extern LanguageManager langManager;
+#define T(x) langManager.t(x)
+
 
 void NotificationManager::checkDeadlines(const std::vector<Task*>& tasks) {
     bool any = false;
@@ -14,5 +19,5 @@ void NotificationManager::checkDeadlines(const std::vector<Task*>& tasks) {
         }
     }
     if (!any)
-        std::cout << "No urgent deadlines." << std::endl;
+        std::cout << T("no_urgent_deadlines") << std::endl;
 }

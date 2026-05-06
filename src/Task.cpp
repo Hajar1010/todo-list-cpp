@@ -80,3 +80,10 @@ std::ostream& operator<<(std::ostream& os, const Task& task) {
     task.display();
     return os;
 }
+std::string Task::getDescription() const {
+    return description;
+}
+
+void Task::setStatus(Status s) {
+    status = s;
+}

@@ -14,24 +14,28 @@ void TaskManager::displayTasks() const {
         std::cout << T("no_tasks") << std::endl;
         return;
     }
-    for (int i = 0; i < (int)tasks.size(); i++) {
+
+    for (int i = 0; i < tasks.size(); i++) {
         std::cout << "--- Task " << (i + 1) << " ---" << std::endl;
         tasks[i]->display();
     }
 }
 
-void TaskManager::removeTask(int index) {
+Task* TaskManager::removeTask(int index) {
     if (index >= 0 && index < (int)tasks.size()) {
-        delete tasks[index];
+        Task* removed = tasks[index];
         tasks.erase(tasks.begin() + index);
+        return removed;
     }
+    return nullptr;
 }
 
 void TaskManager::archiveTask(int index) {
-    if (index >= 0 && index < (int)tasks.size()) {
+    if (index >= 0 && index < tasks.size()) {
         archive.archiveTask(tasks[index]);
         tasks.erase(tasks.begin() + index);
-    } else {
+    } 
+    else {
         std::cout << T("task_not_found") << std::endl;
     }
 }
@@ -42,4 +46,15 @@ std::vector<Task*>& TaskManager::getTasks() {
 
 ArchiveManager& TaskManager::getArchive() {
     return archive;
+}
+
+void TaskManager::restoreTask(Task* task, int index) {
+    if (!task) return;
+
+    if (index >= 0 && index <= tasks.size()) {
+        tasks.insert(tasks.begin() + index, task);
+    } 
+    else {
+        tasks.push_back(task);
+    }
 }
