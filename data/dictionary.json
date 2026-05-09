@@ -79,212 +79,170 @@
     "en": "Choice",
     "fr": "Choix"
   },
-
   "press_enter": {
     "en": "Press Enter to continue...",
     "fr": "Appuye Entrer pour continuer..."
   },
-
   "priority_prompt": {
     "en": "Priority (1=LOW, 2=MEDIUM, 3=HIGH): ",
     "fr": "Priorite (1=FAIBLE, 2=MOYENNE, 3=HAUTE): "
   },
-
   "status_prompt": {
     "en": "Status (1=TODO, 2=IN_PROGRESS, 3=DONE): ",
     "fr": "Statut (1=A FAIRE, 2=EN COURS, 3=TERMINE): "
   },
-
   "title_prompt": {
     "en": "Title: ",
     "fr": "Titre: "
   },
-
   "desc_prompt": {
     "en": "Description: ",
     "fr": "Description: "
   },
-
   "deadline_prompt": {
     "en": "Deadline? (y/n): ",
     "fr": "Echeance? (o/n): "
   },
-
   "deadline_day": {
     "en": "Day (1-31): ",
     "fr": "Jour (1-31): "
   },
-
   "deadline_month": {
     "en": "Month (1-12): ",
     "fr": "Mois (1-12): "
   },
-
   "deadline_year": {
-    "en": "Year (e.g. 2025): ",
-    "fr": "Annee (ex: 2025): "
+    "en": "Year (e.x: 2026): ",
+    "fr": "Annee (ex: 2026): "
   },
-
   "no_tasks": {
     "en": "No tasks found.",
     "fr": "Aucune tache trouvee."
   },
-
   "task_not_found": {
     "en": "Task not found.",
     "fr": "Tache introuvable."
   },
-
   "task_added": {
     "en": "Task added!",
     "fr": "Tache ajoutee!"
   },
-
   "removed": {
     "en": "Task removed!",
     "fr": "Tache supprimee!"
   },
-
   "archived": {
     "en": "Task archived!",
     "fr": "Tache archivee!"
   },
-
   "invalid": {
     "en": "Invalid choice",
     "fr": "Choix invalide"
   },
-
   "title": {
     "en": "Title",
     "fr": "Titre"
   },
-
   "description": {
     "en": "Description",
     "fr": "Description"
   },
-
   "priority": {
     "en": "Priority",
     "fr": "Priorite"
   },
-
   "status": {
     "en": "Status",
     "fr": "Statut"
   },
-
   "low": {
     "en": "Low",
     "fr": "Faible"
   },
-
   "medium": {
     "en": "Medium",
     "fr": "Moyenne"
   },
-
   "high": {
     "en": "High",
     "fr": "Haute"
   },
-
   "todo": {
     "en": "To Do",
     "fr": "A faire"
   },
-
   "in_progress": {
     "en": "In Progress",
     "fr": "En cours"
   },
-
   "done": {
     "en": "Done",
     "fr": "Termine"
   },
-
   "deadline": {
     "en": "Deadline",
     "fr": "Echeance"
   },
-
   "days_left": {
     "en": "days left",
     "fr": "jours restants"
   },
-
   "title_or_index_remove": {
     "en": "Title or index to remove",
     "fr": "Titre ou index a supprimer"
   },
-
   "title_or_index_archive": {
     "en": "Title or index to archive",
     "fr": "Titre ou index a archiver"
   },
-
   "recurrence_prompt": {
     "en": "Recurrence (1=DAILY, 2=WEEKLY, 3=MONTHLY): ",
     "fr": "Recurrence (1=QUOTIDIEN, 2=HEBDO, 3=MENSUEL): "
   },
-
   "daily": {
     "en": "DAILY",
     "fr": "QUOTIDIEN"
   },
-
   "weekly": {
     "en": "WEEKLY",
     "fr": "HEBDOMADAIRE"
   },
-
   "monthly": {
     "en": "MONTHLY",
     "fr": "MENSUEL"
   },
-
   "language_prompt": {
     "en": "1. English\\n2. French\\nChoice: ",
     "fr": "1. Anglais\\n2. Francais\\nChoix : "
   },
-
   "index_title_to_delete": {
     "en": "Enter task index or title to delete: ",
     "fr": "Entrez l index ou le titre a supprimer: "
   },
-
   "undo_prompt": {
     "en": "Undo delete? (y/n): ",
     "fr": "Annuler suppression ? (o/n): "
   },
-
   "undo_success": {
     "en": "Undo successful.",
     "fr": "Annulation reussie."
   },
-
   "exit_message": {
     "en": "Exit",
     "fr": "Quitter"
   },
-
   "error_opening": {
     "en": "Error opening file!",
     "fr": "Erreur ouverture fichier!"
   },
-
   "tasks_saved": {
     "en": "Tasks saved successfully!",
     "fr": "Taches sauvegardees avec succes!"
   },
-
   "error_loading": {
     "en": "Error loading dictionary!",
     "fr": "Erreur chargement dictionnaire!"
   },
-
   "no_urgent_deadlines": {
     "en": "No urgent deadlines.",
     "fr": "Aucune echeance urgente."
@@ -313,61 +271,61 @@
     "en": "Task deleted successfully",
     "fr": "Tache supprimee avec succes"
   },
-  "urgency":{
-    "en":"Urgency",
-    "fr":"urgence"
+  "urgency": {
+    "en": "Urgency",
+    "fr": "urgence"
   },
-  "archived_tasks":{
-    "en":"Archived tasks:",
-    "fr":"Les Taches Archeivee" 
+  "archived_tasks": {
+    "en": "Archived tasks:",
+    "fr": "Les Taches Archivees"
   },
-  "stats_title":{
-    "en":"Stats!",
-    "fr":"Statistiques"
+  "stats_title": {
+    "en": "Stats!",
+    "fr": "Statistiques"
   },
-  "archive_title":{
-    "en":"Archive!",
-    "fr":"Archive!"
+  "archive_title": {
+    "en": "Archive!",
+    "fr": "Archive!"
   },
-  "archive_empty":{
-    "en":"Archive is empty",
-    "fr":"L archive est vide"
+  "archive_empty": {
+    "en": "Archive is empty",
+    "fr": "L archive est vide"
   },
-  "mark_status":{
-    "en":"Mark task status",
-    "fr":"Marquer le statut de la tache"
+  "mark_status": {
+    "en": "Mark task status",
+    "fr": "Marquer le statut de la tache"
   },
-  "status_updated":{
-    "en":"Status updated!",
-    "fr":"Statut mis a jour"
+  "status_updated": {
+    "en": "Status updated!",
+    "fr": "Statut mis a jour"
   },
-  "select_number:":{
-    "en":"Select task number: ",
-    "fr":"Selectionner le numero de la tache: "
+  "select_number:": {
+    "en": "Select task number: ",
+    "fr": "Selectionner le numero de la tache: "
   },
-  "analytics_title":{
-    "en":"Analytics",
-    "fr":"Analyse"
+  "analytics_title": {
+    "en": "Analytics",
+    "fr": "Analyse"
   },
-  "completed_tasks":{
-    "en":"Completed tasks ",
-    "fr":"Taches terminees "
+  "completed_tasks": {
+    "en": "Completed tasks",
+    "fr": "Taches terminees"
   },
-  "pending_tasks":{
-    "en":"Pending tasks: " ,
-    "fr":"Taches en attente "
+  "pending_tasks": {
+    "en": "Pending tasks",
+    "fr": "Taches en attente"
   },
-  "high_priority_tasks":{
-    "en":"High priority tasks " ,
-    "fr":"Taches haute prioritee "
+  "high_priority_tasks": {
+    "en": "High priority tasks",
+    "fr": "Taches haute prioritee"
   },
-  "completion_rate":{
-    "en":"Completion rate " ,
-    "fr":"Taux de completion "
+  "completion_rate": {
+    "en": "Completion rate",
+    "fr": "Taux de completion"
   },
-  "archive_saved_successfully":{
-    "en":"Archive saved successfully!",
-    "fr":"L archive a ete enregistree avec succes!"
+  "archive_saved_successfully": {
+    "en": "Archive saved successfully!",
+    "fr": "Archive enregistree avec succes!"
   },
   "total_all": {
     "en": "Total (all)",
@@ -377,9 +335,76 @@
     "en": "Active tasks",
     "fr": "Taches actives"
   },
-   "select_number": {
+  "select_number": {
     "en": "Select a number",
     "fr": "Selectionnez un numero"
+  },
+  "quote_title": {
+    "en": "A spark of hope",
+    "fr": "Un elan d espoir"
+  },
+  "mood_title": {
+    "en": "Daily Mood",
+    "fr": "Humeur du Jour"
+  },
+  "mood_question": {
+    "en": "How are you feeling today?",
+    "fr": "Comment vous sentez-vous aujourd hui ?"
+  },
+  "mood_great": {
+    "en": "Great",
+    "fr": "Super"
+  },
+  "mood_okay": {
+    "en": "Okay",
+    "fr": "Ca va"
+  },
+  "mood_tired": {
+    "en": "Tired",
+    "fr": "Fatigue"
+  },
+  "mood_sad": {
+    "en": "Sad",
+    "fr": "Triste"
+  },
+  "mood_unknown": {
+    "en": "Unknown",
+    "fr": "Inconnu"
+  },
+  "mood_saved": {
+    "en": "Mood saved successfully!",
+    "fr": "Humeur sauvegardee avec succes!"
+  },
+  "mood_go_to_menu": {
+    "en": "Go to menu?",
+    "fr": "Aller au menu ?"
+  },
+  "mood_current": {
+    "en": "Current Mood",
+    "fr": "Humeur actuelle"
+  },
+  "mood_history": {
+    "en": "Mood History",
+    "fr": "Historique des humeurs"
+  },
+  "mood_no_history": {
+    "en": "No mood history found.",
+    "fr": "Aucun historique trouve."
+  },
+  "great": {
+    "en": "Great",
+    "fr": "Super"
+  },
+  "okay": {
+    "en": "Okay",
+    "fr": "Ca va"
+  },
+  "tired": {
+    "en": "Tired",
+    "fr": "Fatigue"
+  },
+  "sad": {
+    "en": "Sad",
+    "fr": "Triste"
   }
-
 }
