@@ -200,11 +200,9 @@ void printMenu() {
     std::cout << "15. " << T("stats") << "\n";
     std::cout << "16. " << T("notifications") << "\n";
     std::cout << "17. " << T("mark_status") << "\n";
-    std::cout << "18. " << T("mood_ask") << "\n";
-    std::cout << "19. " << T("mood_history") << "\n";
-    std::cout << "20. " << T("mood_archive") << "\n";
+    std::cout << "18. " << T("mood_history") << "\n";
     std::cout << "0.  " << T("exit") << "\n";
-    std::cout << "\n==========================\n";
+    std::cout << "==========================\n\n";
     std::cout << T("choice") << ": ";
 }
 
@@ -229,6 +227,7 @@ int main() {
     std::string currentMood = mood.getMood();
     std::cout << "\n " << T("quote_title") << "\n";
     std::cout << motivation.getQuoteByMood(currentMood) << "\n\n";
+    pause();
 
     // ========= LOAD EXISTING TASKS =========
     std::vector<Task*> savedTasks = FileManager::load();
@@ -435,20 +434,12 @@ int main() {
             break;
         }
 
-        case 18:
-            mood.askMood();
-            pause();
-            break;
 
-        case 19:
+        case 18:
             mood.showMoodHistory();
             pause();
             break;
 
-        case 20:
-            mood.showMoodArchive();
-            pause();
-            break;
 
         case 0:
             FileManager::save(manager.getTasks());

@@ -16,9 +16,22 @@ std::vector<Task*> TaskFilter::byPriority(const std::vector<Task*>& tasks, Prior
 
 std::vector<Task*> TaskFilter::overdue(const std::vector<Task*>& tasks) {
     std::vector<Task*> result;
-    for (Task* t : tasks)
-        if (t->getDeadline() && t->getDeadline()->daysLeft() < 0
-            && t->getStatus() != Status::DONE)
+
+    for (Task* t : tasks) {
+
+        // skip completed tasks
+        if (t->getStatus() == Status::DONE)
+            continue;
+
+        // must have a deadline
+        if (!t->getDeadline())
+            continue;
+
+        // overdue = past deadline
+        if (t->getDeadline()->daysLeft() < 0) {
             result.push_back(t);
+        }
+    }
+
     return result;
 }
