@@ -4,13 +4,15 @@
 #include <nlohmann/json.hpp>
 
 using json = nlohmann::json;
+extern LanguageManager langManager;
+#define T(x) langManager.t(x)
 
 LanguageManager langManager;
 
 void LanguageManager::load(const std::string& file) {
     std::ifstream f(file);
     if (!f.is_open()) {
-        std::cout << "Error loading dictionary!" << std::endl;
+        std::cout << T("error_loading") << std::endl;
         return;
     }
 

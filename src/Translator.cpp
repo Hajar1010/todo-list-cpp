@@ -29,4 +29,4 @@ std::string Translator::t(const std::string& key) {
         return dict[key][currentLang];
 
     return key;
-}
+}   

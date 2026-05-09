@@ -6,3 +6,9 @@
 // - Which C++ version to use (C++17)
 //
 // Without this file, we cannot compile the project easily.
+
+add_executable(app
+    src/main.cpp
+    src/MotivationManager.cpp
+    src/MoodTracker.cpp
+)

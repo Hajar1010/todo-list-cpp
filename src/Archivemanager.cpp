@@ -28,3 +28,6 @@ void ArchiveManager::displayArchive() const {
 const std::vector<Task*>& ArchiveManager::getArchivedTasks() const {
     return archivedTasks;
 }
+void ArchiveManager::addToArchive(Task* task) {
+    archivedTasks.push_back(task);
+}

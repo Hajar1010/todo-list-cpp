@@ -7,4 +7,8 @@ public:
     static int totalTasks(const std::vector<Task*>& tasks);
     static int completedTasks(const std::vector<Task*>& tasks);
     static int overdueTasks(const std::vector<Task*>& tasks);
+    static void showDetailedStats(
+    const std::vector<Task*>& tasks,
+    int archivedCount
+);
 };

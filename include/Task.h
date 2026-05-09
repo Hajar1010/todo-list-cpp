@@ -21,11 +21,13 @@ public:
     virtual int computeUrgency() const = 0;
     virtual std::string getType() const = 0;
     std::string getTitle() const;
+     std::string getDescription() const;  
     Priority getPriority() const;
     Status getStatus() const;
     void setDeadline(Deadline* d);
     Deadline* getDeadline() const;
     bool isOverdue() const;
+    void setStatus(Status s);
 
     virtual ~Task() {}
 

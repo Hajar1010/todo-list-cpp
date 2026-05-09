@@ -1,4 +1,3 @@
-
 #pragma once
 #include <vector>
 #include "Task.h"
@@ -12,11 +11,12 @@ private:
 public:
     void addTask(Task* task);
     void displayTasks() const;
-    void removeTask(int index);
+
+    Task* removeTask(int index);   
     void archiveTask(int index);
+
     std::vector<Task*>& getTasks();
     ArchiveManager& getArchive();
 
+    void restoreTask(Task* task, int index);
 };
-
-

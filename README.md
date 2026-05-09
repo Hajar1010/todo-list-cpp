@@ -62,6 +62,13 @@ include/
  ├── TodayView.h
  ├── NotificationManager.h
  ├── LanguageManager.h
+ ├── Translator.h
+ ├── ArchiveManager.h
+ ├── Deadline.h
+ ├── Priority.h
+ ├── ProductivityAnalytics.h
+ ├── Status.h
+   
 
 
 src/
@@ -75,10 +82,18 @@ src/
  ├── TodayView.cpp
  ├── NotificationManager.cpp
  ├── LanguageManager.cpp
+ ├── Archivemanager.cpp
+ ├── Deadline.cpp
+ ├── Personaltask.cpp
+ ├── ProductivityAnalytics.cpp
+ ├── Translator.cpp
+ ├── Worktask.cpp
  └── main.cpp
 
 data/
- └── dictionary.json
+ ├── dictionary.json
+ ├── archive.json
+ └── tasks.json
 ```
 
 Chaque fichier `.cpp` dans `src/` correspond à un fichier `.h` dans `include/`, ce qui permet une séparation claire entre interface et implémentation.
