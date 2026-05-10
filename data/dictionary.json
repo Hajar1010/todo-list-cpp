@@ -430,18 +430,18 @@
   "invalid_day": {
   "en": "Invalid day !",
   "fr": "Jour invalide !"
-},
-"invalid_month": {
-  "en": "Invalid month !",
-  "fr": "Mois invalide !"
-},
-"invalid_year": {
-  "en": "Invalid year !",
-  "fr": "Annee invalide !"
-},
-  "return": {
-    "en": "Return",
-    "fr": "Retour"
+  },
+  "invalid_month": {
+    "en": "Invalid month !",
+    "fr": "Mois invalide !"
+  },
+  "invalid_year": {
+    "en": "Invalid year !",
+    "fr": "Annee invalide !"
+  },
+  "return to menu": {
+  "en": "Return to menu",
+  "fr": "Retour au menu"
   },
 
   "choose_task_delete": {
@@ -457,7 +457,19 @@
   "invalid_choice": {
     "en": "Invalid choice.",
     "fr": "Choix invalide."
-  }
+  },
+  "confirm_delete": {
+  "en": "Confirm deletion of",
+  "fr": "Confirmer la suppression de"
+  },
+  "yes_key": {
+    "en": "y",
+    "fr": "o"
+  },
+  "no_key": {
+    "en": "n",
+    "fr": "n"
+}
 }
 
 

@@ -14,13 +14,6 @@
         "type": "WORK"
     },
     {
-        "description": "rec",
-        "priority": 1,
-        "status": 1,
-        "title": "reccurente",
-        "type": "RECURRING(WEEKLY)"
-    },
-    {
         "description": "rcggccg",
         "priority": 2,
         "status": 0,
