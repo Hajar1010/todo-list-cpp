@@ -409,23 +409,56 @@
   },
   "quote_great": {
     "en": "Keep shining! Today is your day to achieve something amazing.",
-    "fr": "Continue de briller ! Aujourd'hui est ton jour."
+    "fr": "Continue de briller ! Aujourd hui est ton jour."
   },
   "quote_okay": {
     "en": "Steady progress is still progress. Keep going.",
-    "fr": "Les progrès comptent, continue."
+    "fr": "Les progres comptent, continue."
   },
   "quote_tired": {
-    "en": "Rest if you need to, but don’t quit.",
-    "fr": "Repose-toi si besoin, mais n'abandonne pas."
+    "en": "Rest if you need to, but don t quit.",
+    "fr": "Repose-toi si besoin, mais n abandonne pas."
   },
   "quote_sad": {
     "en": "Even the darkest nights end with sunrise.",
-    "fr": "Même la nuit la plus sombre finit par l’aube."
+    "fr": "Meme la nuit la plus sombre finit par l aube."
   },
   "quote_default": {
     "en": "Stay strong and keep moving forward.",
     "fr": "Reste fort et avance toujours."
-  }
+  },
+  "invalid_day": {
+  "en": "Invalid day !",
+  "fr": "Jour invalide !"
+},
+"invalid_month": {
+  "en": "Invalid month !",
+  "fr": "Mois invalide !"
+},
+"invalid_year": {
+  "en": "Invalid year !",
+  "fr": "Annee invalide !"
+},
+  "return": {
+    "en": "Return",
+    "fr": "Retour"
+  },
 
+  "choose_task_delete": {
+    "en": "Choose a task to delete : ",
+    "fr": "Choisissez une tache a supprimer : "
+  },
+
+  "task_delete_success": {
+    "en": "Task deleted successfully.",
+    "fr": "Tâche supprimee avec succès."
+  },
+
+  "invalid_choice": {
+    "en": "Invalid choice.",
+    "fr": "Choix invalide."
+  }
 }
+
+
+
