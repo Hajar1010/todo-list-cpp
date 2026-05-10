@@ -291,6 +291,7 @@ int main() {
             break;
         }
 
+        
         case 5: {
             auto& tasks = manager.getTasks();
             if (tasks.empty()) { std::cout << T("no_tasks") << "\n"; pause(); break; }
@@ -348,16 +349,46 @@ int main() {
             pause();
             break;
         }
-
         case 6:
             removeOrArchive(manager, 1);
             pause();
             break;
 
-        case 7:
-            manager.getArchive().displayArchive();
+        case 7: {
+            auto& archive = manager.getArchive();
+            archive.displayArchive();
+            
+            const auto& archivedTasks = archive.getArchivedTasks();
+            
+            if (!archivedTasks.empty()) {
+                
+                int choice;
+                
+                std::cout << "\n0. " << T("return") << std::endl;
+                std::cout << T("choose_task_delete");
+                std::cin >> choice;
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                
+                if (choice == 0) {
+                    break;
+                }
+                if (choice > 0 && choice <= (int)archivedTasks.size()) {
+                    
+                    // delete object safely
+                    delete archivedTasks[choice - 1];
+                    // remove pointer from vector (clean way)
+                    archive.deleteArchivedTask(choice - 1);
+                    
+                    std::cout << T("task_delete_success") << std::endl;
+                } else {
+                    std::cout << T("invalid_choice") << std::endl;
+                }
+            } else {
+                std::cout << T("archive_empty") << std::endl;
+            }
             pause();
             break;
+        }
 
         case 8:
             ProductivityAnalytics::showAnalytics(manager.getTasks());

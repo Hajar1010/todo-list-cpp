@@ -1,24 +1,24 @@
 [
     {
-        "description": "2",
-        "priority": 0,
+        "description": "per",
+        "priority": 1,
         "status": 0,
-        "title": "test1",
-        "type": "WORK"
-    },
-    {
-        "description": "22",
-        "priority": 0,
-        "status": 1,
-        "title": "test2",
+        "title": "personnel",
         "type": "PERSONAL"
     },
     {
-        "description": "wefc",
+        "description": "pro",
+        "priority": 1,
+        "status": 0,
+        "title": "professionnelle",
+        "type": "WORK"
+    },
+    {
+        "description": "rec",
         "priority": 1,
         "status": 1,
-        "title": "overdduee",
-        "type": "WORK"
+        "title": "reccurente",
+        "type": "RECURRING(WEEKLY)"
     },
     {
         "description": "rcggccg",
@@ -32,6 +32,13 @@
         "priority": 0,
         "status": 0,
         "title": "22",
+        "type": "WORK"
+    },
+    {
+        "description": "rm",
+        "priority": 2,
+        "status": 0,
+        "title": "roma",
         "type": "WORK"
     }
 ]

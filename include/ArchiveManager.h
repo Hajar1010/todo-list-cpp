@@ -13,4 +13,5 @@ public:
     void displayArchive() const;
     const std::vector<Task*>& getArchivedTasks() const;
     void addToArchive(Task* task);
+    void deleteArchivedTask(int index);
 };
