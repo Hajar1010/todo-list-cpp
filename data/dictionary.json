@@ -213,11 +213,11 @@
   },
   "language_prompt": {
     "en": "1. English\\n2. French\\nChoice: ",
-    "fr": "1. Anglais\\n2. Francais\\nChoix : "
+    "fr": "1. Anglais\\n2. Francais\\nChoix: "
   },
   "index_title_to_delete": {
-    "en": "Enter task index or title to delete: ",
-    "fr": "Entrez l index ou le titre a supprimer: "
+    "en": "Enter task index or title to delete ",
+    "fr": "Entrez l index ou le titre a supprimer "
   },
   "undo_prompt": {
     "en": "Undo delete? (y/n): ",
@@ -293,15 +293,15 @@
   },
   "mark_status": {
     "en": "Mark task status",
-    "fr": "Marquer le statut de la tache"
+    "fr": "Marquer le statut d une tache"
   },
   "status_updated": {
     "en": "Status updated!",
     "fr": "Statut mis a jour"
   },
   "select_number:": {
-    "en": "Select task number: ",
-    "fr": "Selectionner le numero de la tache: "
+    "en": "Select task number ",
+    "fr": "Selectionner le numero de la tache "
   },
   "analytics_title": {
     "en": "Analytics",
@@ -384,7 +384,7 @@
     "fr": "Humeur actuelle"
   },
   "mood_history": {
-    "en": "Mood History",
+    "en": "Mood history",
     "fr": "Historique des humeurs"
   },
   "mood_no_history": {
@@ -427,50 +427,9 @@
     "en": "Stay strong and keep moving forward.",
     "fr": "Reste fort et avance toujours."
   },
-  "invalid_day": {
-  "en": "Invalid day !",
-  "fr": "Jour invalide !"
-  },
-  "invalid_month": {
-    "en": "Invalid month !",
-    "fr": "Mois invalide !"
-  },
-  "invalid_year": {
-    "en": "Invalid year !",
-    "fr": "Annee invalide !"
-  },
-  "return to menu": {
-  "en": "Return to menu",
-  "fr": "Retour au menu"
-  },
+  "return_to_menu":{
+    "en":"Return to menu",
+    "fr":"Retourner au menu"
+  }
 
-  "choose_task_delete": {
-    "en": "Choose a task to delete : ",
-    "fr": "Choisissez une tache a supprimer : "
-  },
-
-  "task_delete_success": {
-    "en": "Task deleted successfully.",
-    "fr": "Tâche supprimee avec succès."
-  },
-
-  "invalid_choice": {
-    "en": "Invalid choice.",
-    "fr": "Choix invalide."
-  },
-  "confirm_delete": {
-  "en": "Confirm deletion of",
-  "fr": "Confirmer la suppression de"
-  },
-  "yes_key": {
-    "en": "y",
-    "fr": "o"
-  },
-  "no_key": {
-    "en": "n",
-    "fr": "n"
 }
-}
-
-
-
