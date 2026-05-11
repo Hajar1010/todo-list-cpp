@@ -23,11 +23,20 @@ void ArchiveManager::displayArchive() const {
         std::cout << "[" << (i + 1) << "] ";
         archivedTasks[i]->display();
     }
+
 }
 
 const std::vector<Task*>& ArchiveManager::getArchivedTasks() const {
     return archivedTasks;
 }
+
 void ArchiveManager::addToArchive(Task* task) {
     archivedTasks.push_back(task);
+}
+
+void ArchiveManager::deleteArchivedTask(int index) {
+    if (index >= 0 && index < (int)archivedTasks.size()) {
+        delete archivedTasks[index];
+        archivedTasks.erase(archivedTasks.begin() + index);
+    }
 }

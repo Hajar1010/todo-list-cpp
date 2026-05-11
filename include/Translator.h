@@ -1,12 +1,12 @@
 #pragma once
+
 #include <string>
 #include <map>
-#include <nlohmann/json.hpp>
 
 class Translator {
 private:
     std::map<std::string, std::map<std::string, std::string>> dict;
-    std::string currentLang;
+    std::string currentLang = "en";
 
 public:
     void load(const std::string& file);

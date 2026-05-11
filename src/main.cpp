@@ -8,6 +8,7 @@
 #include <sstream>
 #include <algorithm>
 #include <stdexcept>
+#include <cctype>
 
 #include "../include/ProductivityAnalytics.h"
 #include "../include/TaskManager.h"
@@ -30,6 +31,7 @@ extern LanguageManager langManager;
 #define T(x) langManager.t(x)
 
 // ================= HELPERS =================
+
 void clearInput() {
     std::cin.clear();
     std::cin.ignore(10000, '\n');
@@ -178,7 +180,16 @@ void removeOrArchive(TaskManager& manager, int mode) {
                 break;
             }
     }
+
 }
+
+std::string toLower(std::string str) {
+    for (char &c : str) {
+        c = std::tolower(c);
+    }
+    return str;
+}
+
 
 // ================= MENU =================
 void printMenu() {
@@ -200,11 +211,9 @@ void printMenu() {
     std::cout << "15. " << T("stats") << "\n";
     std::cout << "16. " << T("notifications") << "\n";
     std::cout << "17. " << T("mark_status") << "\n";
-    std::cout << "18. " << T("mood_ask") << "\n";
-    std::cout << "19. " << T("mood_history") << "\n";
-    std::cout << "20. " << T("mood_archive") << "\n";
+    std::cout << "18. " << T("mood_history") << "\n";
     std::cout << "0.  " << T("exit") << "\n";
-    std::cout << "\n==========================\n";
+    std::cout << "==========================\n\n";
     std::cout << T("choice") << ": ";
 }
 
@@ -229,6 +238,7 @@ int main() {
     std::string currentMood = mood.getMood();
     std::cout << "\n " << T("quote_title") << "\n";
     std::cout << motivation.getQuoteByMood(currentMood) << "\n\n";
+    pause();
 
     // ========= LOAD EXISTING TASKS =========
     std::vector<Task*> savedTasks = FileManager::load();
@@ -294,24 +304,28 @@ int main() {
 
         case 5: {
             auto& tasks = manager.getTasks();
-            if (tasks.empty()) { std::cout << T("no_tasks") << "\n"; pause(); break; }
-
+            if (tasks.empty()) {
+                std::cout << T("no_tasks") << "\n";
+                pause();
+                break;
+            }
             for (int i = 0; i < (int)tasks.size(); i++)
-                std::cout << "[" << (i + 1) << "] " << tasks[i]->getTitle() << "\n";
+            std::cout << "[" << (i + 1) << "] " << tasks[i]->getTitle() << "\n";
 
-            std::cin.ignore(10000, '\n');
+            // Clear any leftover newline characters before reading full line input
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
             std::string input;
             std::cout << T("index_title_to_delete") << ": ";
-            std::getline(std::cin, input);
+            std::getline(std::cin, input); // Reads full line including spaces
 
             bool found = false;
             bool isNumber = !input.empty();
             for (char c : input)
-                if (!std::isdigit((unsigned char)c)) { isNumber = false; break; }
-
+            if (!std::isdigit((unsigned char)c)) { isNumber = false; break; }
+            
             Task* tempTask = nullptr;
             int tempIndex = -1;
-
             if (isNumber) {
                 int index = std::stoi(input) - 1;
                 if (index >= 0 && index < (int)tasks.size()) {
@@ -321,45 +335,81 @@ int main() {
                 }
             } else {
                 for (int i = 0; i < (int)tasks.size(); i++)
-                    if (tasks[i]->getTitle() == input) {
-                        tempTask = manager.removeTask(i);
-                        tempIndex = i;
-                        found = true;
-                        break;
-                    }
+                if (toLower(tasks[i]->getTitle()) == toLower(input)){
+                    tempTask = manager.removeTask(i);
+                    tempIndex = i;
+                    found = true;
+                    break;
+                }
             }
-
-            if (!found) { std::cout << T("task_not_found") << "\n"; pause(); break; }
+            if (!found) {
+                std::cout << T("task_not_found") << "\n";
+                pause();
+                break;
+            }
 
             std::cout << T("task_deleted") << "\n";
             lastDeletedTask = tempTask;
             lastDeletedIndex = tempIndex;
-
             char undo;
             std::cout << T("undo_prompt");
             std::cin >> undo;
             clearInput();
 
             if (undo == 'y' || undo == 'Y' || undo == 'o' || undo == 'O') {
-                manager.restoreTask(lastDeletedTask, lastDeletedIndex);
-                std::cout << T("undo_success") << "\n";
+                 manager.restoreTask(lastDeletedTask, lastDeletedIndex);
+                 std::cout << T("undo_success") << "\n";
+                }
+                
+                lastDeletedTask = nullptr;
+                lastDeletedIndex = -1;
+                pause();
+                break;
             }
-            lastDeletedTask = nullptr;
-            lastDeletedIndex = -1;
-            pause();
-            break;
-        }
 
         case 6:
             removeOrArchive(manager, 1);
             pause();
             break;
 
-        case 7:
-            manager.getArchive().displayArchive();
+        case 7: {
+            auto& archive = manager.getArchive();
+            archive.displayArchive();
+            const auto& archivedTasks = archive.getArchivedTasks();
+            
+            if (!archivedTasks.empty()) {
+                std::cout << "\n0. " << T("Return to menu ") << "\n";
+                std::cout << T("choose_task_delete") << ": ";
+                
+                int idx;
+                std::cin >> idx;
+                clearInput();
+                if (idx == 0) {
+                    pause();
+                    break;
+                }
+                
+                if (idx > 0 && idx <= (int)archivedTasks.size()) {
+                // confirm
+                std::cout << T("confirm_delete") << " \"" 
+                << archivedTasks[idx - 1]->getTitle() 
+                << "\"? (" << T("yes_key") << "/" << T("no_key") << "): ";
+                char confirm;
+                std::cin >> confirm;
+                clearInput();
+                
+                if (confirm == 'y' || confirm == 'Y' || 
+                    confirm == 'o' || confirm == 'O') {
+                        archive.deleteArchivedTask(idx - 1);
+                        std::cout << T("task_deleted") << "\n";
+                    }
+                } else {
+                    std::cout << T("invalid") << "\n";
+                }
+            }
             pause();
             break;
-
+        }
         case 8:
             ProductivityAnalytics::showAnalytics(manager.getTasks());
             pause();
@@ -435,20 +485,12 @@ int main() {
             break;
         }
 
-        case 18:
-            mood.askMood();
-            pause();
-            break;
 
-        case 19:
+        case 18:
             mood.showMoodHistory();
             pause();
             break;
 
-        case 20:
-            mood.showMoodArchive();
-            pause();
-            break;
 
         case 0:
             FileManager::save(manager.getTasks());
