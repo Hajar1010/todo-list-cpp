@@ -337,7 +337,7 @@
   },
   "select_number": {
     "en": "Select a number",
-    "fr": "Selectionnez un numero"
+    "fr": "Selectionnez un numero "
   },
   "quote_title": {
     "en": "A spark of hope",
@@ -430,6 +430,25 @@
   "return_to_menu":{
     "en":"Return to menu",
     "fr":"Retourner au menu"
+  },
+  "choose_task_delete": {
+    "en": "Choose the task to delete",
+    "fr": "Choisissez la tache a supprimer"
+  },
+
+  "confirm_delete": {
+    "en": "Are you sure you want to delete",
+    "fr": "Voulez-vous vraiment supprimer"
+  },
+
+  "yes_key": {
+    "en": "yes",
+    "fr": "oui"
+  },
+
+  "no_key": {
+    "en": "no",
+    "fr": "non"
   }
 
 }

@@ -378,7 +378,7 @@ int main() {
             const auto& archivedTasks = archive.getArchivedTasks();
             
             if (!archivedTasks.empty()) {
-                std::cout << "\n0. " << T("Return to menu ") << "\n";
+                std::cout << "\n0. " << T("return_to_menu") << "\n";
                 std::cout << T("choose_task_delete") << ": ";
                 
                 int idx;
