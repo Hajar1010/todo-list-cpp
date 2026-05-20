@@ -225,12 +225,22 @@ int main() {
 
     langManager.load("data/dictionary.json");
 
-    int langChoice;
+    std::string langChoice;
+
     std::cout << "1. English\n2. French\nChoice: ";
     std::cin >> langChoice;
     clearInput();
+    std::transform(langChoice.begin(), langChoice.end(),
+               langChoice.begin(), ::tolower);
 
-    langManager.setLanguage(langChoice == 2 ? "fr" : "en");
+    if (langChoice == "2" ||
+        langChoice == "fr" ||
+        langChoice == "french")
+        {  langManager.setLanguage("fr");
+        }
+    else
+    {  langManager.setLanguage("en");
+          }
 
     // ========= DAILY MOOD — une seule fois =========
     mood.askMood();
