@@ -1,1 +1,23 @@
-[]
+[
+    {
+        "description": "Team sync",
+        "priority": 1,
+        "status": 0,
+        "title": "Weekly Meeting",
+        "type": "RECURRING(WEEKLY)"
+    },
+    {
+        "description": "Weekly progress summary",
+        "priority": 1,
+        "status": 2,
+        "title": "Prepare Internship Report",
+        "type": "WORK"
+    },
+    {
+        "description": "Final SQL implementation",
+        "priority": 2,
+        "status": 2,
+        "title": "Complete Database Project",
+        "type": "WORK"
+    }
+]

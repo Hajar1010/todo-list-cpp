@@ -1,1 +1,114 @@
-[]
+[
+    {
+        "description": "Finish final report",
+        "priority": 2,
+        "status": 1,
+        "title": "Project Report",
+        "type": "WORK"
+    },
+    {
+        "description": "OOP final report",
+        "priority": 2,
+        "status": 0,
+        "title": "Submit Assignment",
+        "type": "WORK"
+    },
+    {
+        "description": "Practice sorting algorithms",
+        "priority": 2,
+        "status": 0,
+        "title": "Study Algorithms",
+        "type": "WORK"
+    },
+    {
+        "description": "push day",
+        "priority": 1,
+        "status": 0,
+        "title": "Gym",
+        "type": "PERSONAL"
+    },
+    {
+        "description": "Monthly payment",
+        "priority": 1,
+        "status": 0,
+        "title": "Pay Electricity Bill",
+        "type": "PERSONAL"
+    },
+    {
+        "description": "New gaming laptop",
+        "priority": 1,
+        "status": 0,
+        "title": "Buy Laptop",
+        "type": "PERSONAL"
+    },
+    {
+        "description": "Upload projects to GitHub",
+        "priority": 1,
+        "status": 1,
+        "title": "Finish Portfolio",
+        "type": "WORK"
+    },
+    {
+        "description": "Organize workspace",
+        "priority": 1,
+        "status": 0,
+        "title": "Clean Room",
+        "type": "RECURRING(WEEKLY)"
+    },
+    {
+        "description": "Save project backups",
+        "priority": 1,
+        "status": 0,
+        "title": "Backup Files",
+        "type": "RECURRING(MONTHLY)"
+    },
+    {
+        "description": "Update resume",
+        "priority": 1,
+        "status": 2,
+        "title": "Finish CV",
+        "type": "WORK"
+    },
+    {
+        "description": "Hydration reminder",
+        "priority": 0,
+        "status": 0,
+        "title": "Drink Water",
+        "type": "RECURRING(DAILY)"
+    },
+    {
+        "description": "Teeth cleaning",
+        "priority": 0,
+        "status": 1,
+        "title": "Dentist Appointment",
+        "type": "PERSONAL"
+    },
+    {
+        "description": "AI seminar slides",
+        "priority": 0,
+        "status": 1,
+        "title": "Prepare Presentation",
+        "type": "WORK"
+    },
+    {
+        "description": "Book hotels and flights",
+        "priority": 0,
+        "status": 0,
+        "title": "Vacation Planning",
+        "type": "PERSONAL"
+    },
+    {
+        "description": "Review inheritance",
+        "priority": 0,
+        "status": 2,
+        "title": "Read C++ Notes",
+        "type": "WORK"
+    },
+    {
+        "description": "going out with friends",
+        "priority": 0,
+        "status": 0,
+        "title": "go out for a walk",
+        "type": "PERSONAL"
+    }
+]
