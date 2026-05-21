@@ -227,20 +227,33 @@ int main() {
 
     std::string langChoice;
 
+while (true)
+{
     std::cout << "1. English\n2. French\nChoice: ";
     std::cin >> langChoice;
     clearInput();
     std::transform(langChoice.begin(), langChoice.end(),
-               langChoice.begin(), ::tolower);
+                   langChoice.begin(), ::tolower);
 
-    if (langChoice == "2" ||
-        langChoice == "fr" ||
-        langChoice == "french")
-        {  langManager.setLanguage("fr");
-        }
+    if (langChoice == "1" ||
+        langChoice == "en" ||
+        langChoice == "english")
+    {
+        langManager.setLanguage("en");
+        break;
+    }
+    else if (langChoice == "2" ||
+             langChoice == "fr" ||
+             langChoice == "french")
+    {
+        langManager.setLanguage("fr");
+        break;
+    }
     else
-    {  langManager.setLanguage("en");
-          }
+    {
+        std::cout << "Invalid choice. Please enter English or French.\n\n";
+    }
+}
 
     // ========= DAILY MOOD — une seule fois =========
     mood.askMood();
