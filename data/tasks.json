@@ -28,13 +28,6 @@
         "type": "PERSONAL"
     },
     {
-        "description": "Monthly payment",
-        "priority": 1,
-        "status": 0,
-        "title": "Pay Electricity Bill",
-        "type": "PERSONAL"
-    },
-    {
         "description": "New gaming laptop",
         "priority": 1,
         "status": 0,
@@ -49,32 +42,11 @@
         "type": "WORK"
     },
     {
-        "description": "Organize workspace",
-        "priority": 1,
-        "status": 0,
-        "title": "Clean Room",
-        "type": "RECURRING(WEEKLY)"
-    },
-    {
-        "description": "Save project backups",
-        "priority": 1,
-        "status": 0,
-        "title": "Backup Files",
-        "type": "RECURRING(MONTHLY)"
-    },
-    {
         "description": "Update resume",
         "priority": 1,
         "status": 2,
         "title": "Finish CV",
         "type": "WORK"
-    },
-    {
-        "description": "Hydration reminder",
-        "priority": 0,
-        "status": 0,
-        "title": "Drink Water",
-        "type": "RECURRING(DAILY)"
     },
     {
         "description": "Teeth cleaning",
@@ -110,5 +82,68 @@
         "status": 0,
         "title": "go out for a walk",
         "type": "PERSONAL"
+    },
+    {
+        "description": "Solve 2 coding problems on arrays or OOP",
+        "priority": 1,
+        "status": 0,
+        "title": "solve some coding problems",
+        "type": "WORK"
+    },
+    {
+        "description": "Reply to pending academic/work emails",
+        "priority": 1,
+        "status": 1,
+        "title": "Reply to emails",
+        "type": "WORK"
+    },
+    {
+        "description": "Prepare notes for next lecture",
+        "priority": 0,
+        "status": 0,
+        "title": "Prepare notes",
+        "type": "WORK"
+    },
+    {
+        "description": "Review what was done today and plan tomorrow",
+        "priority": 1,
+        "status": 1,
+        "title": "Daily Review & Planning",
+        "type": "RECURRING(DAILY)"
+    },
+    {
+        "description": "Monthly payment",
+        "priority": 0,
+        "status": 0,
+        "title": "Pay Electricity Bill",
+        "type": "RECURRING(WEEKLY)"
+    },
+    {
+        "description": "drink +1,2l per day",
+        "priority": 2,
+        "status": 0,
+        "title": "Stay Hydrated",
+        "type": "RECURRING(DAILY)"
+    },
+    {
+        "description": "Backup projects, code, and important files",
+        "priority": 2,
+        "status": 1,
+        "title": "Monthly Backup",
+        "type": "RECURRING(MONTHLY)"
+    },
+    {
+        "description": "Learn one new advanced C++ or software concept",
+        "priority": 1,
+        "status": 0,
+        "title": "Skill Upgrade",
+        "type": "WORK"
+    },
+    {
+        "description": "Clean files, update folders, and remove junk",
+        "priority": 1,
+        "status": 1,
+        "title": "System Cleanup",
+        "type": "WORK"
     }
 ]

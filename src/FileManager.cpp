@@ -82,11 +82,24 @@ std::vector<Task*> FileManager::load() {
         else if (type == "PERSONAL") {
             t = new PersonalTask(title, desc, (Priority)priority, (Status)status);
         }
-        else if (type == "RECURRING") {
-            t = new RecurringTask(title, desc,
-                                  (Priority)priority,
-                                  (Status)status,
-                                  Recurrence::DAILY);
+        else if (type.find("RECURRING") != std::string::npos) {
+
+            Recurrence r;
+
+            if (type.find("DAILY") != std::string::npos)
+                r = Recurrence::DAILY;
+            else if (type.find("WEEKLY") != std::string::npos)
+                r = Recurrence::WEEKLY;
+            else
+                r = Recurrence::MONTHLY;
+
+            t = new RecurringTask(
+                title,
+                desc,
+                (Priority)priority,
+                (Status)status,
+                r
+            );
         }
 
         if (t) tasks.push_back(t);
