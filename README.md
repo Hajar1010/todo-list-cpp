@@ -113,7 +113,7 @@ data/
 └── mood_history.txt
 │
 ├── docs/
-│   ├── rapport.pdf
+│   ├── Rapport_TaskManager.pdf
 │
 ├── README.md
 └── Makefile
